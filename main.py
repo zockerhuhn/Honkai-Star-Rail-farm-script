@@ -1,11 +1,9 @@
 from PIL import ImageGrab
 from PIL import Image
+from PIL import ImageShow
 import pytesseract
 from pytesseract.pytesseract import string
-
-#global variables
-image = None
-AmountToCollect:int
+testing = True
 
 #These are settings, change these to your needs
 UseReserve = True
@@ -15,16 +13,30 @@ UseStellarJade = False
 WARNING, THIS ALLOWS THE SCRIPT TO SPEND STELLAR JADE ON TRAILBLAZE POWER
 """
 
+
+#global variables
+AmountCollected = 0
+CurrentState = "InCombat"
+
+
 #change this if your screen has different dimensions
 MonitorDefaultWidth = 1920
 MonitorDefaultHeight = 1080
 
-#
-ReplenishTrailblazePowerHeightStart = int(MonitorDefaultHeight/4.8)
-ReplenishTrailblazePowerWidthStart = int(MonitorDefaultWidth/1.3935483871)
-ReplenishTrailblazePowerHeightEnd = int(MonitorDefaultHeight/1.2631578947)
-ReplenishTrailblazePowerWidthEnd = int(MonitorDefaultHeight/3.6)
+
+#some other settings that shouldn't be changed
+ReplenishTrailblazePowerWidthStart = int(MonitorDefaultWidth/4.8)
+ReplenishTrailblazePowerHeightStart = int(MonitorDefaultHeight/3.6)
+ReplenishTrailblazePowerWidthEnd = int(MonitorDefaultWidth/1.2631578947)
+ReplenishTrailblazePowerHeightEnd = int(MonitorDefaultHeight/1.3846153846)
 replenishTrailblazePowerUseWidthHeight = True
+
+ChallengeCompletedWidthStart = int(MonitorDefaultWidth/4.8)
+ChallengeCompletedHeightStart = int(MonitorDefaultHeight/2.0769230769)
+ChallengeCompletedWidthEnd = int(MonitorDefaultWidth/2.2068965517)
+ChallengeCompletedHeightEnd = int(MonitorDefaultHeight/2.16)
+ChallengeCompletedUseWidthHeight = True
+
 
 def readscreen(situation:str = "default"):
 	"""
@@ -32,10 +44,10 @@ def readscreen(situation:str = "default"):
 	"""
 	match situation:
 		case "default":
-			x1 = MonitorDefaultHeight
+			x1 = MonitorDefaultWidth
 			y1 = 0
 			x2 = 0 
-			y2 = MonitorDefaultWidth
+			y2 = MonitorDefaultHeight
 		case "ReplenishTrailblazePower":
 			x1 = ReplenishTrailblazePowerWidthStart
 			y1 = ReplenishTrailblazePowerHeightStart
@@ -43,15 +55,18 @@ def readscreen(situation:str = "default"):
 			y2 = ReplenishTrailblazePowerHeightEnd 
 		case _:
 			print(f"Situation {situation} not found, using whole screen")
-			x1 = MonitorDefaultHeight
+			x1 = MonitorDefaultWidth
 			y1 = 0
 			x2 = 0
-			y2 = MonitorDefaultWidth
+			y2 = MonitorDefaultHeight
+	if testing:
+		return Image.open("Example_replenish-trailblaze-power_reserve.jpg")
+	#ImageShow.show(ImageGrab.grab(bbox=(x1,y1,x2,y2)))
 	return (ImageGrab.grab(bbox = (x1,y1,x2,y2)))
 
 
-AmountToCollect = int(input("Specify amount of ressources to collect (use 0 for infinite or relics)"))
-while True:
-	
+#AmountToCollect = int(input("Specify amount of ressources to collect (use 0 for infinite or relics)"))
+#while True:
+#	pass
 #print(image.getpixel((1,1079)))
-#print(pytesseract.image_to_string(image))
+print(pytesseract.image_to_string(readscreen("ReplenishTrailblazePower")))

@@ -22,6 +22,11 @@ CurrentState = "InCombat"
 #change this if your screen has different dimensions
 MonitorDefaultWidth = 1920
 MonitorDefaultHeight = 1080
+CheckForScreenSize = True #Automatically check screen dimensions
+if CheckForScreenSize:
+	image = ImageGrab.grab()
+	MonitorDefaultWidth = image.size[0]
+	MonitorDefaultHeight = image.size[1]
 
 
 #some other settings that shouldn't be changed
@@ -36,6 +41,35 @@ ChallengeCompletedHeightStart = int(MonitorDefaultHeight/2.0769230769)
 ChallengeCompletedWidthEnd = int(MonitorDefaultWidth/2.2068965517)
 ChallengeCompletedHeightEnd = int(MonitorDefaultHeight/2.16)
 ChallengeCompletedUseWidthHeight = True
+
+PausePixelX = int(MonitorDefaultWidth/1.0212765957)
+PausePixelY = int(MonitorDefaultHeight/36)
+
+
+def update_situation():
+	"""
+	Updates the Global Variable CurrentState to the current state of the game
+	"""
+	global CurrentState
+	#image = Image.open("Example_replenish-trailblaze-power_noreserve.png")
+	#image = Image.open("Example_infight_noauto.jpg")
+	image = ImageGrab.grab()
+	PausePixel = image.getpixel((PausePixelX,PausePixelY))
+	AddedValue = 0
+	if PausePixel is tuple:
+		for i in PausePixel:
+			AddedValue += i
+		if AddedValue >= 300:
+			CurrentState = "InCombat"
+			return
+	elif PausePixel >= 100:
+		CurrentState = "InCombat"
+		return
+	ImageString = pytesseract.image_to_string(image, lang='eng')
+	if "Challenge Completed" in ImageString:
+		CurrentState = "ChallengeCompleted"
+		return
+	
 
 
 def readscreen(situation:str = "default"):
@@ -71,7 +105,7 @@ def readscreen(situation:str = "default"):
 
 
 #AmountToCollect = int(input("Specify amount of ressources to collect (use 0 for infinite or relics)"))
+update_situation()
 #while True:
 #	pass
-#print(image.getpixel((1,1079)))
-print(pytesseract.image_to_string(readscreen("ReplenishTrailblazePower")))
+#print(pytesseract.image_to_string(readscreen("ReplenishTrailblazePower")))

@@ -2,7 +2,7 @@ from PIL import ImageGrab
 from PIL import Image
 from PIL import ImageShow
 import pytesseract
-from pytesseract.pytesseract import string
+from pyautogui import moveTo
 testing = True
 
 #These are settings, change these to your needs
@@ -16,13 +16,16 @@ WARNING, THIS ALLOWS THE SCRIPT TO SPEND STELLAR JADE ON TRAILBLAZE POWER
 
 #global variables
 AmountCollected = 0
-CurrentState = "InCombat"
+CurrentState = "Temp"
 
 
 #change this if your screen has different dimensions
 MonitorDefaultWidth = 1920
 MonitorDefaultHeight = 1080
-CheckForScreenSize = True #Automatically check screen dimensions
+CheckForScreenSize = True 
+"""
+Automatically check screen dimensions if true
+"""
 if CheckForScreenSize:
 	image = ImageGrab.grab()
 	MonitorDefaultWidth = image.size[0]
@@ -51,9 +54,9 @@ def update_situation():
 	Updates the Global Variable CurrentState to the current state of the game
 	"""
 	global CurrentState
-	#image = Image.open("Example_replenish-trailblaze-power_noreserve.png")
+	image = Image.open("Example_replenish-trailblaze-power_noreserve.png")
 	#image = Image.open("Example_infight_noauto.jpg")
-	image = ImageGrab.grab()
+	#image = ImageGrab.grab()
 	PausePixel = image.getpixel((PausePixelX,PausePixelY))
 	AddedValue = 0
 	if PausePixel is tuple:
@@ -62,14 +65,19 @@ def update_situation():
 		if AddedValue >= 300:
 			CurrentState = "InCombat"
 			return
-	elif PausePixel >= 100:
-		CurrentState = "InCombat"
-		return
+	elif PausePixel is int:
+		if PausePixel >= 100:
+			CurrentState = "InCombat"
+			return
 	ImageString = pytesseract.image_to_string(image, lang='eng')
 	if "Challenge Completed" in ImageString:
 		CurrentState = "ChallengeCompleted"
 		return
-	
+	if "Replenish Trailblaze Power" in ImageString:
+		CurrentState = "ReplenishTrailblazePower"
+		return
+	print("Unknown State; Trying to find state again")
+	update_situation()
 
 
 def readscreen(situation:str = "default"):
@@ -106,6 +114,7 @@ def readscreen(situation:str = "default"):
 
 #AmountToCollect = int(input("Specify amount of ressources to collect (use 0 for infinite or relics)"))
 update_situation()
-#while True:
-#	pass
+print(CurrentState)
+while True:
+	pass
 #print(pytesseract.image_to_string(readscreen("ReplenishTrailblazePower")))

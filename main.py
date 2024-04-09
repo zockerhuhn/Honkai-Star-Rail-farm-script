@@ -44,20 +44,25 @@ def readscreen(situation:str = "default"):
 	"""
 	match situation:
 		case "default":
-			x1 = MonitorDefaultWidth
+			x1 = 0
 			y1 = 0
-			x2 = 0 
+			x2 = MonitorDefaultWidth 
 			y2 = MonitorDefaultHeight
 		case "ReplenishTrailblazePower":
 			x1 = ReplenishTrailblazePowerWidthStart
 			y1 = ReplenishTrailblazePowerHeightStart
 			x2 = ReplenishTrailblazePowerWidthEnd
 			y2 = ReplenishTrailblazePowerHeightEnd 
+		case "ChallengeCompleted":
+			x1 = ChallengeCompletedWidthStart
+			y1 = ChallengeCompletedHeightStart
+			x2 = ChallengeCompletedWidthEnd
+			y2 = ChallengeCompletedHeightEnd
 		case _:
 			print(f"Situation {situation} not found, using whole screen")
-			x1 = MonitorDefaultWidth
+			x1 = 0
 			y1 = 0
-			x2 = 0
+			x2 = MonitorDefaultWidth
 			y2 = MonitorDefaultHeight
 	if testing:
 		return Image.open("Example_replenish-trailblaze-power_reserve.jpg")

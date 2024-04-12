@@ -1,3 +1,4 @@
+from settings import UseReserve, UseFuel, UseStellarJade, ExitGameAfterCompletion
 from PIL import ImageGrab
 from PIL import Image
 from PIL import ImageShow

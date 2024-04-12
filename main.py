@@ -1,52 +1,43 @@
+from settings import UseReserve, UseFuel, UseStellarJade, ExitGameAfterCompletion
 from PIL import ImageGrab
 from PIL import Image
 from PIL import ImageShow
 import pytesseract
-from pyautogui import moveTo
-testing = True
-
-#These are settings, change these to your needs
-UseReserve = True
-UseFuel = False
-UseStellarJade = False 
-"""
-WARNING, THIS ALLOWS THE SCRIPT TO SPEND STELLAR JADE ON TRAILBLAZE POWER
-"""
+import pyautogui
+import time
 
 
 #global variables
 AmountCollected = 0
 CurrentState = "Temp"
+image: Image.Image
 
 
 #change this if your screen has different dimensions
-MonitorDefaultWidth = 1920
-MonitorDefaultHeight = 1080
-CheckForScreenSize = True 
-"""
-Automatically check screen dimensions if true
-"""
-if CheckForScreenSize:
-	image = ImageGrab.grab()
-	MonitorDefaultWidth = image.size[0]
-	MonitorDefaultHeight = image.size[1]
+# MonitorDefaultWidth = 1920
+# MonitorDefaultHeight = 1080
+# CheckForScreenSize = True
+# """
+# Automatically check screen dimensions if true
+# """
+# if CheckForScreenSize:
+# 	image = ImageGrab.grab()
+# 	MonitorDefaultWidth = image.size[0]
+# 	MonitorDefaultHeight = image.size[1]
 
 
 #some other settings that shouldn't be changed
-ReplenishTrailblazePowerWidthStart = int(MonitorDefaultWidth/4.8)
-ReplenishTrailblazePowerHeightStart = int(MonitorDefaultHeight/3.6)
-ReplenishTrailblazePowerWidthEnd = int(MonitorDefaultWidth/1.2631578947)
-ReplenishTrailblazePowerHeightEnd = int(MonitorDefaultHeight/1.3846153846)
-replenishTrailblazePowerUseWidthHeight = True
+RewardWidthStart = 548
+RewardHeightStart = 520
+RewardWidthEnd = 1373
+RewardHeightEnd = 539
 
-ChallengeCompletedWidthStart = int(MonitorDefaultWidth/4.8)
-ChallengeCompletedHeightStart = int(MonitorDefaultHeight/2.0769230769)
-ChallengeCompletedWidthEnd = int(MonitorDefaultWidth/2.2068965517)
-ChallengeCompletedHeightEnd = int(MonitorDefaultHeight/2.16)
-ChallengeCompletedUseWidthHeight = True
+PausePixelX = 1662
+PausePixelY = 65
 
-PausePixelX = int(MonitorDefaultWidth/1.0212765957)
-PausePixelY = int(MonitorDefaultHeight/36)
+StopButtonX = 720
+BothButtonY = 950
+AgainButtonX = 1210
 
 
 def update_situation():
@@ -54,21 +45,11 @@ def update_situation():
 	Updates the Global Variable CurrentState to the current state of the game
 	"""
 	global CurrentState
-	image = Image.open("Example_replenish-trailblaze-power_noreserve.png")
-	#image = Image.open("Example_infight_noauto.jpg")
-	#image = ImageGrab.grab()
+	global image
+	image = ImageGrab.grab()
 	PausePixel = image.getpixel((PausePixelX,PausePixelY))
+	print(str(PausePixel))
 	AddedValue = 0
-	if PausePixel is tuple:
-		for i in PausePixel:
-			AddedValue += i
-		if AddedValue >= 300:
-			CurrentState = "InCombat"
-			return
-	elif PausePixel is int:
-		if PausePixel >= 100:
-			CurrentState = "InCombat"
-			return
 	ImageString = pytesseract.image_to_string(image, lang='eng')
 	if "Challenge Completed" in ImageString:
 		CurrentState = "ChallengeCompleted"
@@ -76,45 +57,80 @@ def update_situation():
 	if "Replenish Trailblaze Power" in ImageString:
 		CurrentState = "ReplenishTrailblazePower"
 		return
+	for i in PausePixel:
+		AddedValue += i
+	if AddedValue >= 580:
+		CurrentState = "InCombat"
+		return
 	print("Unknown State; Trying to find state again")
 	update_situation()
 
 
-def readscreen(situation:str = "default"):
-	"""
-	Reads the screen and returns the image as a PIL image object. situation limits the amount of pixel read onscreen to only the amount of pixels necessary for that situation
-	"""
-	match situation:
-		case "default":
-			x1 = 0
-			y1 = 0
-			x2 = MonitorDefaultWidth 
-			y2 = MonitorDefaultHeight
-		case "ReplenishTrailblazePower":
-			x1 = ReplenishTrailblazePowerWidthStart
-			y1 = ReplenishTrailblazePowerHeightStart
-			x2 = ReplenishTrailblazePowerWidthEnd
-			y2 = ReplenishTrailblazePowerHeightEnd 
-		case "ChallengeCompleted":
-			x1 = ChallengeCompletedWidthStart
-			y1 = ChallengeCompletedHeightStart
-			x2 = ChallengeCompletedWidthEnd
-			y2 = ChallengeCompletedHeightEnd
-		case _:
-			print(f"Situation {situation} not found, using whole screen")
-			x1 = 0
-			y1 = 0
-			x2 = MonitorDefaultWidth
-			y2 = MonitorDefaultHeight
-	if testing:
-		return Image.open("Example_replenish-trailblaze-power_reserve.jpg")
-	#ImageShow.show(ImageGrab.grab(bbox=(x1,y1,x2,y2)))
-	return (ImageGrab.grab(bbox = (x1,y1,x2,y2)))
+def close_game():
+	pyautogui.keyDown('alt')
+	pyautogui.press('f4')
+	pyautogui.keyUp('alt')
+
+def update_rewardcount():
+	global AmountCollected
+	global AmountToCollect
+	global image
+	image = ImageGrab.grab(bbox = (RewardWidthStart,RewardHeightStart,RewardWidthEnd,RewardHeightEnd))
+	print(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1])
+	try:
+		AmountCollected += int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1])
+	except:
+		pass
 
 
-#AmountToCollect = int(input("Specify amount of ressources to collect (use 0 for infinite or relics)"))
-update_situation()
-print(CurrentState)
+AmountToCollect = int(input("Specify amount of ressources to collect (use 0 for infinite or relics)"))
+x = 0
+time.sleep(3)
 while True:
-	pass
-#print(pytesseract.image_to_string(readscreen("ReplenishTrailblazePower")))
+	update_situation()
+	print(CurrentState)
+	match CurrentState:
+		case "InCombat":
+			time.sleep(5)
+			continue
+		case "ChallengeCompleted":
+			update_rewardcount()
+			if AmountCollected >= AmountToCollect:
+				print(f"Collected enough ressources ({AmountCollected}), terminating...")
+				if ExitGameAfterCompletion:
+					close_game()
+					break
+				pyautogui.moveTo(x= StopButtonX,y= BothButtonY)
+				pyautogui.click()
+				break
+			else:
+				print(f"reached {AmountCollected}/{AmountToCollect} ressources, starting again...")
+				pyautogui.moveTo(AgainButtonX,BothButtonY)
+				pyautogui.click()
+				x += 1
+				continue
+		case "ReplenishTrailblazePower":
+			pyautogui.moveTo(1180,735)
+			ReplenishString = pytesseract.image_to_string(image, 'eng')
+			if "Reserved" in ReplenishString and UseReserve:
+				print("Using reserve to replenish Trailblaze Power")
+				pyautogui.click()
+			elif "Exchange" in ReplenishString and UseFuel:
+				pyautogui.click()
+				print("Using fuel to replenish Trailblaze Power")
+			elif "Consume" in ReplenishString and UseStellarJade:
+				print("Using Stellar Jade to replenish Trailblaze Power")
+			else:
+				print(f"Can't use any replenishment, reached {AmountCollected}/{AmountToCollect}, ending...")
+				if ExitGameAfterCompletion:
+					close_game()
+					break
+				pyautogui.moveTo(760,735)
+				pyautogui.click()
+				pyautogui.moveTo(x= StopButtonX,y= BothButtonY)
+				pyautogui.click()
+			pyautogui.moveTo(1185,795)
+			pyautogui.click()
+			time.sleep(0.75)
+			pyautogui.click()
+			continue

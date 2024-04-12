@@ -14,16 +14,16 @@ image: Image.Image
 
 
 #change this if your screen has different dimensions
-MonitorDefaultWidth = 1920
-MonitorDefaultHeight = 1080
-CheckForScreenSize = False
-"""
-Automatically check screen dimensions if true
-"""
-if CheckForScreenSize:
-	image = ImageGrab.grab()
-	MonitorDefaultWidth = image.size[0]
-	MonitorDefaultHeight = image.size[1]
+# MonitorDefaultWidth = 1920
+# MonitorDefaultHeight = 1080
+# CheckForScreenSize = True
+# """
+# Automatically check screen dimensions if true
+# """
+# if CheckForScreenSize:
+# 	image = ImageGrab.grab()
+# 	MonitorDefaultWidth = image.size[0]
+# 	MonitorDefaultHeight = image.size[1]
 
 
 #some other settings that shouldn't be changed
@@ -50,7 +50,6 @@ def update_situation():
 	PausePixel = image.getpixel((PausePixelX,PausePixelY))
 	print(str(PausePixel))
 	AddedValue = 0
-	
 	ImageString = pytesseract.image_to_string(image, lang='eng')
 	if "Challenge Completed" in ImageString:
 		CurrentState = "ChallengeCompleted"
@@ -119,6 +118,8 @@ while True:
 			elif "Exchange" in ReplenishString and UseFuel:
 				pyautogui.click()
 				print("Using fuel to replenish Trailblaze Power")
+			elif "Consume" in ReplenishString and UseStellarJade:
+				print("Using Stellar Jade to replenish Trailblaze Power")
 			else:
 				print(f"Can't use any replenishment, reached {AmountCollected}/{AmountToCollect}, ending...")
 				if ExitGameAfterCompletion:

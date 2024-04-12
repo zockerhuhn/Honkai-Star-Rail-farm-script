@@ -27,17 +27,6 @@ if CheckForScreenSize:
 
 
 #some other settings that shouldn't be changed
-ReplenishTrailblazePowerWidthStart = int(MonitorDefaultWidth/4.8)
-ReplenishTrailblazePowerHeightStart = int(MonitorDefaultHeight/3.6)
-ReplenishTrailblazePowerWidthEnd = int(MonitorDefaultWidth/1.2631578947)
-ReplenishTrailblazePowerHeightEnd = int(MonitorDefaultHeight/1.3846153846)
-
-ChallengeCompletedWidthStart = int(MonitorDefaultWidth/4.8)
-ChallengeCompletedHeightStart = int(MonitorDefaultHeight/2.0769230769)
-ChallengeCompletedWidthEnd = int(MonitorDefaultWidth/2.2068965517)
-ChallengeCompletedHeightEnd = int(MonitorDefaultHeight/2.16)
-ChallengeCompletedUseWidthHeight = True
-
 RewardWidthStart = 548
 RewardHeightStart = 520
 RewardWidthEnd = 1373

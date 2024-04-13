@@ -27,10 +27,10 @@ image: Image.Image
 
 
 #some other settings that shouldn't be changed
-RewardWidthStart = 548
-RewardHeightStart = 520
-RewardWidthEnd = 1373
-RewardHeightEnd = 539
+RewardWidthStart = 668 #548
+RewardHeightStart = 581 #520
+RewardWidthEnd = 1254 #1373
+RewardHeightEnd = 599 #539
 
 PausePixelX = 1662
 PausePixelY = 65
@@ -132,5 +132,7 @@ while True:
 			pyautogui.moveTo(1185,795)
 			pyautogui.click()
 			time.sleep(0.75)
+			pyautogui.click()
+			pyautogui.moveTo(AgainButtonX, BothButtonY)
 			pyautogui.click()
 			continue

@@ -42,7 +42,7 @@ Press 'WIN + r' on your keyboard and enter cmd, this should open up a terminal
 
 Enter 'cd [your_chosen_path]'
 
-Enter 'git clone [repository link]'
+Enter 'git clone https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script.git'
 
 ## Using the script
 

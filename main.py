@@ -60,7 +60,7 @@ def update_situation():
 	image = ImageGrab.grab()
 	PausePixel = image.getpixel((PausePixelX,PausePixelY))
 	AddedValue = 0
-	ImageString = pytesseract.image_to_string(image, lang='eng', config='--psm 6')
+	ImageString = pytesseract.image_to_string(image, lang='eng')
 	if "Challenge Completed" in ImageString:
 		CurrentState = "ChallengeCompleted"
 		return
@@ -106,11 +106,12 @@ def heal():
     pyautogui.dragRel(-1000,0, 2, mouseDownUp=False)
     pyautogui.click(Jarilo_VIX,Jarilo_VIY)
 
-time.sleep(1)
-heal()
+#time.sleep(1)
+#heal()
 AmountToCollect = int(input("Specify amount of ressources to collect"))
+SkipRewardCount = False
 x = 0
-time.sleep(30)
+time.sleep(3)
 while True:
 	update_situation()
 	print(CurrentState)
@@ -119,7 +120,8 @@ while True:
 			time.sleep(5)
 			continue
 		case "ChallengeCompleted":
-			update_rewardcount()
+			if not SkipRewardCount:
+				update_rewardcount()
 			if AmountCollected >= AmountToCollect:
 				print(f"Collected enough ressources ({AmountCollected}), terminating...")
 				if ExitGameAfterCompletion:
@@ -133,6 +135,7 @@ while True:
 				pyautogui.moveTo(AgainButtonX,BothButtonY)
 				pyautogui.click()
 				x += 1
+				time.sleep(1)
 				continue
 		case "ReplenishTrailblazePower":
 			pyautogui.moveTo(1180,735)
@@ -154,19 +157,22 @@ while True:
 				pyautogui.click()
 				pyautogui.moveTo(StopButtonX, BothButtonY)
 				pyautogui.click()
+				break
 			pyautogui.moveTo(1185,795)
 			pyautogui.click()
 			time.sleep(0.75)
 			pyautogui.click()
+			time.sleep(0.75)
 			pyautogui.moveTo(AgainButtonX, BothButtonY)
 			pyautogui.click()
+			time.sleep(0.75)
 			continue
 		case "DownedChar":
 			image = ImageGrab.grab(bbox=(DownedTextStartX, DownedTextStartY, DownedTextEndX, DownedTextEndY))
 			CharName = pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[0]
 			if eval(CharName):
 				pyautogui.moveTo(1185,679)
-				#pyautogui.click()
+				pyautogui.click()
 				continue
 			else:
 				pyautogui.moveTo(764,675)
@@ -175,4 +181,4 @@ while True:
 				pyautogui.moveTo(StopButtonX, BothButtonY)
 				pyautogui.click()
 				time.sleep(2)
-				heal()
+				#heal()

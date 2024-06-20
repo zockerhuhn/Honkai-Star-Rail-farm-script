@@ -34,6 +34,7 @@ Install git on your PC
 Install Python on your PC (available in the microsoft store)
 
 Install tesseract OCR (__Do not change the path of this installation or the script will break__ (_if you know what you're doing you can change this but you will also have to change the path in the script_))
+__This software is used to read the text and numbers from the screen by taking a screenshot of the specific are and then using tesseract to analyse it__
 
 ### Clone the repository
 Choose where you want to install the script (I recommend documents or desktop) (It will install in a new folder, you don'thave to create one)
@@ -63,6 +64,6 @@ To update the script repeat steps 1-3 of the _Clone the repository_ step
 
 Open cmd and enter 'cd [the folder where you installed the script]'
 
-Enter 'git pull --prune'
+Enter 'git pull --f --prune'
 
 This should update the script but might also reset your settings (depending on the update) so remember to check them again

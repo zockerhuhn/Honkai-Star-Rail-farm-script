@@ -46,6 +46,7 @@ Enter 'cd [your_chosen_path]'
 Enter 'git clone https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script.git'
 
 ## Using the script
+To change settings open the folder where the script is installed and right click the settings.py file. Select open with and open it with a Texteditor of your choice (the default editor of windows should work fine)
 
 To start the script press the Windows key and enter cmd in the search, right click it, then press run as administrator and confirm. (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
 

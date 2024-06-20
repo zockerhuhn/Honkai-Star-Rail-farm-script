@@ -27,10 +27,15 @@ image: Image.Image
 
 
 #some other settings that shouldn't be changed
-RewardWidthStart = 668 #548
-RewardHeightStart = 581 #520
-RewardWidthEnd = 1254 #1373
-RewardHeightEnd = 599 #539
+RewardWidthStartOne = 668 
+RewardHeightStartOne = 581 
+RewardWidthEndOne = 1254 
+RewardHeightEndOne = 599 
+
+RewardWidthStartTwo = 548
+RewardHeightStartTwo = 520
+RewardWidthEndTwo = 1373
+RewardHeightEndTwo = 539
 
 PausePixelX = 1662
 PausePixelY = 65
@@ -84,16 +89,27 @@ def close_game():
 	pyautogui.press('f4')
 	pyautogui.keyUp('alt')
 
+
 def update_rewardcount():
 	global AmountCollected
 	global AmountToCollect
 	global image
-	image = ImageGrab.grab(bbox = (RewardWidthStart,RewardHeightStart,RewardWidthEnd,RewardHeightEnd))
-	print(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1])
+	FailCounter:int = 0
+	FailCountMax:int = 5
+	image = ImageGrab.grab(bbox = (RewardWidthStartOne,RewardHeightStartOne,RewardWidthEndOne,RewardHeightEndOne))
 	try:
-		AmountCollected += int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1])
+		print(int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1]))
 	except:
-		pass
+		image = ImageGrab.grab(bbox = (RewardWidthStartTwo,RewardHeightStartTwo,RewardWidthEndTwo,RewardHeightEndTwo))
+		try:
+			print(int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1]))
+		except:
+			FailCounter += 1
+			if FailCounter >= FailCountMax:
+				print(f"failed {FailCounter} times which is over max amount ({FailCountMax}), terminating...")
+				raise IndexError
+			print(f"somehow didn't find a reward for single and double row, trying again {FailCounter}/{FailCountMax}")
+	AmountCollected += int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1])
 
 
 def heal():
@@ -105,6 +121,7 @@ def heal():
     pyautogui.moveRel(-1,0)
     pyautogui.dragRel(-1000,0, 2, mouseDownUp=False)
     pyautogui.click(Jarilo_VIX,Jarilo_VIY)
+
 
 #time.sleep(1)
 #heal()

@@ -1,4 +1,4 @@
-from settings import UseReserve, UseFuel, UseStellarJade, ExitGameAfterCompletion,SkipRewardCount,Acheron,Argenti,Arlan,Asta,Bailu,Black_Swan,Blade,Bronya,Clara,Dan_Heng,Dan_Heng_Imbibitor_Lunae,Dr_Ratio,Fu_Xuan,Gallagher,Gepard,Guinaifen,Hanya,Herta,Himeko,Hook,Huohuo,Jing_Yuan,Jingliu,Kafka,Luka,Luocha,Lynx,March_7th,Misha,Natasha,Pela,Qingque,Ruan_Mei,Sampo,Seele,Serval,Silver_Wolf,Sparkle,Sushang,Tingyun,Topaz_and_Numby,Trailblazer,Welt,Xueyi,Yanqing,Yukong
+from settings import UseReserve, UseFuel, UseStellarJade, ExitGameAfterCompletion,SkipRewardCount,Acheron,Argenti,Arlan,Asta,Bailu,Black_Swan,Blade,Bronya,Clara,Dan_Heng,Dan_Heng_Imbibitor_Lunae,Dr_Ratio,Firefly,Fu_Xuan,Gallagher,Gepard,Guinaifen,Hanya,Herta,Himeko,Hook,Huohuo,Jing_Yuan,Jingliu,Kafka,Luka,Luocha,Lynx,March_7th,Misha,Natasha,Pela,Qingque,Ruan_Mei,Sampo,Seele,Serval,Silver_Wolf,Sparkle,Sushang,Tingyun,Topaz_and_Numby,Trailblazer,Welt,Xueyi,Yanqing,Yukong
 from PIL import ImageGrab
 from PIL import Image
 from PIL import ImageShow
@@ -109,7 +109,6 @@ def heal():
 #time.sleep(1)
 #heal()
 AmountToCollect = int(input("Specify amount of ressources to collect"))
-x = 0
 time.sleep(3)
 while True:
 	update_situation()
@@ -133,7 +132,6 @@ while True:
 				print(f"reached {AmountCollected}/{AmountToCollect} ressources, starting again...")
 				pyautogui.moveTo(AgainButtonX,BothButtonY)
 				pyautogui.click()
-				x += 1
 				time.sleep(1)
 				continue
 		case "ReplenishTrailblazePower":
@@ -142,6 +140,7 @@ while True:
 			if "Reserved" in ReplenishString and UseReserve:
 				print("Using reserve to replenish Trailblaze Power")
 				pyautogui.click()
+				pyautogui.moveTo(1185,795)
 			elif "Exchange" in ReplenishString and UseFuel:
 				pyautogui.click()
 				print("Using fuel to replenish Trailblaze Power")
@@ -157,7 +156,6 @@ while True:
 				pyautogui.moveTo(StopButtonX, BothButtonY)
 				pyautogui.click()
 				break
-			pyautogui.moveTo(1185,795)
 			pyautogui.click()
 			time.sleep(0.75)
 			pyautogui.click()

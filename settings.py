@@ -2,7 +2,7 @@
 
 UseReserve = True
 
-UseFuel = False
+UseFuel = True
 
 UseStellarJade = False
 """
@@ -32,6 +32,7 @@ Clara = False
 Dan_Heng = False
 Dan_Heng_Imbibitor_Lunae = False #
 Dr_Ratio = False #
+Firefly = False
 Fu_Xuan = False
 Gallagher = False
 Gepard = False
@@ -52,6 +53,7 @@ Misha = False
 Natasha = False
 Pela = False
 Qingque = False
+Robin = False
 Ruan_Mei = False
 Sampo = False
 Seele = False

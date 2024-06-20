@@ -9,17 +9,17 @@ Exit the challenge completed screen when desired reward amount is reached (view 
 
 Close game after reaching desired reward amount if setting is set to true
 
+Decide which characters to ignore when they are down
+
+supports relic domains if setting _SkipCountReward_ is True
+
 ## Planned
-Ignore or heal characters that died during combat
+Revive downed characters during combat
 
 Start multiple from user specified reward challenges back to back
 
-Support for relic _domains_
-
 # Known Issues
-If trailblaze power needs to be replenished the script detects the rewards two times. This will be fixed in next update
-
-Currently only supports challenges that have 2 rows long rewards. Support for both will be added
+Currently only supports challenges that have 1 or 2 rows long rewards (currently only switchable manually). Automated support for both will be added
 
 If challenging _domains_ with rewards that can differ in rarity the script always uses the rarest drop that got obtained and adds it to the Collected counter. This will be fixed in the future but might take some time
 
@@ -33,7 +33,7 @@ Install git on your PC
 
 Install Python on your PC (available in the microsoft store)
 
-Install tesseract OCR (__Do not change the path of this installation or the script will break__)
+Install tesseract OCR (__Do not change the path of this installation or the script will break__ (_if you know what you're doing you can change this but you will also have to change the path in the script_))
 
 ### Clone the repository
 Choose where you want to install the script (I recommend documents or desktop) (It will install in a new folder, you don'thave to create one)
@@ -50,7 +50,7 @@ To start the script press the Windows key and enter cmd in the search, then pres
 
 __This part will change as more features are implemented__
 
-In Star Rail start your desired combat _domain_ (currently only supports two layer rewards), choose your characters and enter combat
+In Star Rail start your desired combat _domain_ (see known issues for reward layer amount), choose your characters and enter combat
 
 The Terminal should now ask you how many rewards you want to farm, type the desired amount (as numbers, __not alphabetically__) and press enter
 
@@ -61,8 +61,8 @@ To end the script early simply go back into the Terminal and press 'ctrl + c'
 ## Updating the script
 To update the script repeat steps 1-3 of the _Clone the repository_ step
 
-Enter [revert command]
+Open cmd and enter 'cd [the folder where you installed the script]'
 
-Enter 'git clone --prune
+Enter 'git pull --prune'
 
-This should update the script but also reset your settings so remember to set them again
+This should update the script but might also reset your settings (depending on the update) so remember to check them again

@@ -2,7 +2,7 @@
 
 UseReserve = True
 
-UseFuel = True
+UseFuel = False
 
 UseStellarJade = False
 """
@@ -30,8 +30,8 @@ Blade = False
 Bronya = False
 Clara = False
 Dan_Heng = False
-Dan_Heng_Imbibitor_Lunae = False #
-Dr_Ratio = False #
+Dan_Heng_Imbibitor_Lunae = False #wont work, dont use them for now
+Dr_Ratio = False #wont work, dont use them for now
 Firefly = False
 Fu_Xuan = False
 Gallagher = False
@@ -63,7 +63,7 @@ Sparkle = False
 Sushang = False
 Tingyun = False
 Topaz_and_Numby = False
-Trailblazer = False #If you use trailblazer rename the name of this Variable to your trailblazers name (case sensitive!)
+Trailblazer = False #If you use trailblazer rename the name of this Variable to your trailblazers name (case sensitive!) | wont work, dont use them for now
 Welt = False
 Xueyi = False
 Yanqing = False

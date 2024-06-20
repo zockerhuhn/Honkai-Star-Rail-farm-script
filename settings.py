@@ -9,6 +9,10 @@ ExitGameAfterCompletion = False
 """
 If set to true the script closes the whole game after it is done collecting the desired rewards
 """
+SkipRewardCount = False
+"""
+Set this to True for relics farming, it will prevent the script from stopping when reaching the desired amount and only stop itself when all the allowed replenish sources are exhausted!
+"""
 #If you set the corresponding Value of the character to True the script will ignore them being down and continue instead of healing them
 Acheron = False
 Argenti = False

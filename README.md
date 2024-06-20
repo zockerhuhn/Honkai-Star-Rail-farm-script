@@ -38,7 +38,7 @@ Direct install link: https://github.com/UB-Mannheim/tesseract/releases/download/
 __This software is used to read the text and numbers from the screen by taking a screenshot of the specific area and then using tesseract to analyse it__
 
 ### Clone the repository
-Choose where you want to install the script (I recommend documents or desktop) (It will install in a new folder, you don'thave to create one)
+Choose where you want to install the script (I recommend documents or desktop) (It will install in a new folder, you don't have to create one)
 
 Press 'WIN + r' on your keyboard and enter cmd, this should open up a terminal
 

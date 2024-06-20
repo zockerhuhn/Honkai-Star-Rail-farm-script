@@ -11,7 +11,7 @@ Close game after reaching desired reward amount if setting is set to true
 
 Decide which characters to ignore when they are down
 
-supports relic domains if setting _SkipCountReward_ is True
+supports relic domains if setting _SkipRewardCount_ is True
 
 ## Planned
 Revive downed characters during combat
@@ -47,13 +47,17 @@ Enter 'git clone https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script.git'
 
 ## Using the script
 
-To start the script press the Windows key and enter cmd in the search, then press run as administrator and confirm. (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
+To start the script press the Windows key and enter cmd in the search, right click it, then press run as administrator and confirm. (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
 
 __This part will change as more features are implemented__
 
 In Star Rail start your desired combat _domain_ (see known issues for reward layer amount), choose your characters and enter combat
 
-The Terminal should now ask you how many rewards you want to farm, type the desired amount (as numbers, __not alphabetically__) and press enter
+Enter 'cd [the folder that you installed the script into]' into your terminal
+
+Enter 'python main.py' into the terminal
+
+The terminal should now ask you how many rewards you want to farm, type the desired amount (as numbers, __not alphabetically__) and press enter
 
 Tab into Star Rail and you're good to go, the script will stop as soon as the desired reward amount is reached.
 

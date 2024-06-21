@@ -19,9 +19,7 @@ Revive downed characters during combat
 Start multiple from user specified reward challenges back to back
 
 # Known Issues
-Currently only supports challenges that have 1 or 2 rows long rewards (currently only switchable manually). Automated support for both will be added
-
-If challenging _domains_ with rewards that can differ in rarity the script always uses the rarest drop that got obtained and adds it to the Collected counter. This will be fixed in the future but might take some time
+If challenging _domains_ with rewards that can differ in rarity the script always uses the rarest drop that got obtained and adds it to the Collected counter. This will be fixed in the future
 
 # How to use
 Since the script is currently still in development this is a bit complicated, but possible.

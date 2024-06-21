@@ -1,4 +1,10 @@
 This script is still in development
+I am not liable for any inconvenience the script might cause including spending ressources.
+
+# FAQ 
+
+## Will I be banned for using this script?
+While I can't and won't gurantee anything, probably not. I have been testing and using this script since over 2 months now and haven't been banned. All this script does is take Screenshots of small regions of the screen and use tesseract to read the text onscreen. Then it imitates a mouse and presses the right buttons according to the state of the game in the screenshot. You can test this by simply looking at a screenshot instead of ingame and the script won't know the difference.
 
 # Features
 

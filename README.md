@@ -55,15 +55,9 @@ Enter 'git clone https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script.git'
 ## Using the script
 To change settings open the folder where the script is installed and right click the settings.py file. Select open with and open it with a Texteditor of your choice (the default editor of windows should work fine)
 
-To start the script press the Windows key and enter cmd in the search, right click it, then press run as administrator and confirm. (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
+To start the script run the main.py file as administrator. (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
 
-__This part will change as more features are implemented__
-
-In Star Rail start your desired combat _domain_ (see known issues for reward layer amount), choose your characters and enter combat
-
-Enter 'cd [the folder that you installed the script into]' into your terminal
-
-Enter 'python main.py' into the terminal
+In Star Rail start your desired combat _domain_ (see known issues for reward layer amount), choose your characters and enter combat (turn on autoplay)
 
 The terminal should now ask you how many rewards you want to farm, type the desired amount (as numbers, __not alphabetically__) and press enter
 
@@ -72,7 +66,7 @@ Tab into Star Rail and you're good to go, the script will stop as soon as the de
 To end the script early simply go back into the Terminal and press 'ctrl + c'
 
 ## Updating the script
-To update the script repeat steps 1-3 of the _Clone the repository_ step
+_To repare the script repeat steps 1-3 of the _Clone the repository_ step_
 
 Open cmd and enter 'cd [the folder where you installed the script]'
 

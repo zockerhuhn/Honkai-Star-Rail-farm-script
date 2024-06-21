@@ -30,7 +30,7 @@ Start multiple from user specified reward challenges back to back
 If challenging _domains_ with rewards that can differ in rarity the script always uses the rarest drop that got obtained and adds it to the Collected counter. This will be fixed in the future
 
 # How to use
-Since the script is currently still in development this is a bit complicated, but possible.
+Since the script is currently still in development this is a bit complicated, but possible. Im Currently working on making the installation significantly easier, I don't recommend using/installing it until that is finished 
 
 ## Installing the script
 

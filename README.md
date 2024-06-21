@@ -11,6 +11,8 @@ While I can't and won't gurantee anything, probably not. I have been testing and
 ## Working
 Restart combat after done with challenge.
 
+Automatically refresh trailblaze power according to your settings (you decide what kind of ressources can be used).
+
 Exit the challenge completed screen when desired reward amount is reached (view issues)
 
 Close game after reaching desired reward amount if setting is set to true

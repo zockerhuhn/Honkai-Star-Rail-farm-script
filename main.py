@@ -2,6 +2,8 @@ from settings import UseReserve, UseFuel, UseStellarJade, ExitGameAfterCompletio
 from PIL import ImageGrab
 from PIL import Image
 from PIL import ImageShow
+import numpy as np
+import cv2 as cv
 import pytesseract
 import pyautogui
 import time
@@ -27,15 +29,9 @@ image: Image.Image
 
 
 #some other settings that shouldn't be changed
-RewardWidthStartOne = 668 
-RewardHeightStartOne = 581 
-RewardWidthEndOne = 1254 
-RewardHeightEndOne = 599 
+RewardOneShape:tuple = 668, 581, 1254, 599
 
-RewardWidthStartTwo = 548
-RewardHeightStartTwo = 520
-RewardWidthEndTwo = 1373
-RewardHeightEndTwo = 539
+RewardTwoShape:tuple = 548, 520, 1373, 539
 
 PausePixelX = 1662
 PausePixelY = 65
@@ -54,6 +50,9 @@ Jarilo_VIY = 405
 
 StarRailMapX = 1670
 StarRailMapY = 140
+
+FirstItemShapeTwoRows:tuple = 634, 502, 659, 612
+FirstItemShapeOneRow:tuple = 0, 0, 0, 0
 
 
 def update_situation():
@@ -90,37 +89,74 @@ def close_game():
 	pyautogui.keyUp('alt')
 
 
+def mse(imageA, imageB): #https://github.com/CelestialCrafter/hsr-auto-auto-battle/blob/master/main.py#L3
+	err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
+	err /= float(imageA.shape[0] * imageA.shape[1])
+	print(err)
+	return err
+
+
+def determine_rarity(imageA):
+	FourStar = cv.imread("Comparison-Examples/Example_Item-4Star.png")
+	if mse(imageA, FourStar) <= 10:
+		return 4
+	raise Exception("Unknown Rarity")
+	#ThreeStar = cv.imread("Comparison-Examples/Example_Item-3Star.png")
+	#if mse(imageA, ThreeStar) <= 10:
+	#	return 3
+
+
 def update_rewardcount():
+	TwoRows:bool
 	global AmountCollected
 	global AmountToCollect
 	global image
 	FailCounter:int = 0
 	FailCountMax:int = 5
-	image = ImageGrab.grab(bbox = (RewardWidthStartOne,RewardHeightStartOne,RewardWidthEndOne,RewardHeightEndOne))
+	image = ImageGrab.grab(bbox=RewardOneShape)
 	try:
 		print(int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1]))
+		TwoRows = False
 	except:
-		image = ImageGrab.grab(bbox = (RewardWidthStartTwo,RewardHeightStartTwo,RewardWidthEndTwo,RewardHeightEndTwo))
+		image = ImageGrab.grab(bbox=RewardTwoShape)
 		try:
 			print(int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1]))
+			TwoRows = True
 		except:
 			FailCounter += 1
 			if FailCounter >= FailCountMax:
 				print(f"failed {FailCounter} times which is over max amount ({FailCountMax}), terminating...")
 				raise IndexError
 			print(f"somehow didn't find a reward for single and double row, trying again {FailCounter}/{FailCountMax}")
-	AmountCollected += int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1])
+			update_rewardcount()
+			return()
+	rewards:list = pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")
+	image = Image.open("Example_ChallengeCompleted.png")
+	if TwoRows:
+		image = ImageGrab.grab(bbox = FirstItemShapeTwoRows)
+	else:
+		image = ImageGrab.grab(bbox = FirstItemShapeOneRow)
+	image.save("temp/screenshot_temp.png")
+	cvimage = cv.imread("temp/screenshot_temp.png")
+	rarity = determine_rarity(cvimage)
+	match rarity:
+		case 4:
+			AmountCollected += int(rewards[1]) + float(rewards[2]/3) + float(rewards[3]/9)
+		case 3:
+			AmountCollected += float(rewards[1]/3) + float(rewards[2]/9)
+		case _:
+			raise Exception("Unknown Rarity, made it into calculation")
 
 
 def heal():
-    pyautogui.press('m')
-    time.sleep(1.5)
-    pyautogui.click(StarRailMapX,StarRailMapY)
-    #pyautogui.moveRel(1000,0)
-    time.sleep(2.5)
-    pyautogui.moveRel(-1,0)
-    pyautogui.dragRel(-1000,0, 2, mouseDownUp=False)
-    pyautogui.click(Jarilo_VIX,Jarilo_VIY)
+		pyautogui.press('m')
+		time.sleep(1.5)
+		pyautogui.click(StarRailMapX,StarRailMapY)
+		#pyautogui.moveRel(1000,0)
+		time.sleep(2.5)
+		pyautogui.moveRel(-1,0)
+		pyautogui.dragRel(-1000,0, 2, mouseDownUp=False)
+		pyautogui.click(Jarilo_VIX,Jarilo_VIY)
 
 
 #time.sleep(1)

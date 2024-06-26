@@ -1,13 +1,5 @@
-from PIL import ImageGrab
-from PIL import ImageOps
-from PIL import ImageShow
-import time
-import pytesseract
+from PIL import Image
 
-time.sleep(5)
-image = ImageGrab.grab(bbox=(670,495,1190,525))
-#print(str(image.getpixel((1662,65))))
-#ImageShow.show(image)
-image = ImageOps.solarize(image)
-ImageShow.show(image)
-print(pytesseract.image_to_string(image, lang='eng', config='--psm 6'))
+im = Image.open("Example_ChallengeCompleted.png")
+im.resize(1920,1080)
+im.save("Example_ChallengeCompletedtest.png", Image.ANTIALIAS)

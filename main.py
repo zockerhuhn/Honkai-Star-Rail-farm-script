@@ -23,7 +23,7 @@ FailCounter:int = 0
 
 
 #some other settings that shouldn't be changed
-RewardOneShape:tuple = 668, 581, 1254, 599
+RewardOneShape:tuple = 668, 580, 1254, 599
 
 RewardTwoShape:tuple = 548, 520, 1373, 539
 
@@ -46,7 +46,7 @@ StarRailMapX = 1670
 StarRailMapY = 140
 
 FirstItemShapeTwoRows:tuple = 634, 502, 659, 612
-FirstItemShapeOneRow:tuple = 0, 0, 0, 0
+FirstItemShapeOneRow:tuple = 848, 496, 867, 579
 
 # def import_settings():
 #     global UseReserve
@@ -118,12 +118,12 @@ def mse(imageA, imageB): #https://github.com/CelestialCrafter/hsr-auto-auto-batt
 
 def determine_rarity(imageA):
 	FourStar = cv.imread("Comparison-Examples/Example_Item-4Star.png")
-	if mse(imageA, FourStar) <= 10:
+	if mse(imageA, FourStar) <= 4500:
 		return 4
+	ThreeStar = cv.imread("Comparison-Examples/Example_Item-3Star.png")
+	if mse(imageA, ThreeStar) <= 4500:
+		return 3
 	raise Exception("Unknown Rarity")
-	#ThreeStar = cv.imread("Comparison-Examples/Example_Item-3Star.png")
-	#if mse(imageA, ThreeStar) <= 10:
-	#	return 3
 
 
 def update_rewardcount():
@@ -151,19 +151,19 @@ def update_rewardcount():
 			update_rewardcount()
 			return()
 	rewards:list = pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")
-	image = Image.open("Example_ChallengeCompleted.png")
 	if TwoRows:
 		image = ImageGrab.grab(bbox = FirstItemShapeTwoRows)
 	else:
 		image = ImageGrab.grab(bbox = FirstItemShapeOneRow)
+	#ImageShow.show(image)
 	image.save("temp/screenshot_temp.png")
 	cvimage = cv.imread("temp/screenshot_temp.png")
 	rarity = determine_rarity(cvimage)
 	match rarity:
 		case 4:
-			AmountCollected += int(rewards[1]) + float(rewards[2]/3) + float(rewards[3]/9)
+			AmountCollected += int(rewards[1]) + float(int(rewards[2])/3) + float(int(rewards[3])/9)
 		case 3:
-			AmountCollected += float(rewards[1]/3) + float(rewards[2]/9)
+			AmountCollected += float(int(rewards[1])/3) + float(int(rewards[2])/9)
 		case _:
 			raise Exception("Unknown Rarity, made it into calculation")
 
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 				if not SkipRewardCount:
 					update_rewardcount()
 				if AmountCollected >= AmountToCollect:
-					print(f"Collected enough ressources ({AmountCollected}), terminating...")
+					print(f"Collected enough ressources ({(int(AmountCollected*100))/100}), terminating...")
 					if ExitGameAfterCompletion:
 						close_game()
 						break
@@ -204,7 +204,7 @@ if __name__ == "__main__":
 					pyautogui.click()
 					break
 				else:
-					print(f"reached {AmountCollected}/{AmountToCollect} ressources, starting again...")
+					print(f"reached {(int(AmountCollected*100))/100}/{AmountToCollect} ressources, starting again...")
 					pyautogui.moveTo(AgainButtonX,BothButtonY)
 					pyautogui.click()
 					time.sleep(1)
@@ -222,7 +222,7 @@ if __name__ == "__main__":
 				elif "Consume" in ReplenishString and UseStellarJade:
 					print("Using Stellar Jade to replenish Trailblaze Power")
 				else:
-					print(f"Can't use any replenishment, reached {AmountCollected}/{AmountToCollect}, ending...")
+					print(f"Can't use any replenishment, reached {(int(AmountCollected*100))/100}/{AmountToCollect}, ending...")
 					if ExitGameAfterCompletion:
 						close_game()
 						break

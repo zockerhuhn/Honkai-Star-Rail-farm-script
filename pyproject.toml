@@ -10,6 +10,8 @@ packages = [{include = "repl_nix_pythonscreenreadstuff"}]
 python = "^3.10"
 pytesseract = "^0.3.10"
 pyautogui = "^0.9.54"
+numpy = "^2.0.0"
+opencv-python = "^4.10.0.84"
 
 
 [build-system]

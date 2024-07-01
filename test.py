@@ -80,7 +80,6 @@ def main():
 
 	mainMenu.add.button(title="Start", action=start(), 
 						font_color=WHITE, background_color=RED) 
-
 	mainMenu.mainloop(screen) 
 
 main()

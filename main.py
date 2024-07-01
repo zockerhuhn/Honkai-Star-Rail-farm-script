@@ -14,12 +14,6 @@ AmountCollected = 0
 CurrentState = "Temp"
 image: Image.Image
 FailCounter:int = 0
-# UseReserve:bool
-# UseFuel:bool
-# UseStellarJade:bool
-# ExitGameAfterCompletion:bool
-# SkipRewardCount:bool
-# CharactersToIgnore:list
 
 
 #some other settings that shouldn't be changed
@@ -47,33 +41,8 @@ StarRailMapY = 140
 
 FirstItemShapeTwoRows:tuple = 634, 502, 659, 612
 FirstItemShapeOneRow:tuple = 848, 496, 867, 579
+       
 
-# def import_settings():
-#     global UseReserve
-#     global UseFuel
-#     global UseStellarJade
-#     global ExitGameAfterCompletion
-#     global SkipRewardCount
-#     global CharactersToIgnore
-#     with open("general_settings.txt","r") as GeneralSettings:
-#         GeneralSettings=GeneralSettings.read().split(":")
-#         for i in range(len(GeneralSettings)):
-#             if (i+1)%2==0:
-#                 match i+1:
-#                     case 2:
-#                         UseReserve = eval(GeneralSettings[i])
-#                     case 4:
-#                         UseFuel = eval(GeneralSettings[i])
-#                     case 6:
-#                         UseStellarJade = eval(GeneralSettings[i])
-#                     case 8:
-#                         ExitGameAfterCompletion = eval(GeneralSettings[i])
-#                     case 10:
-#                         SkipRewardCount = eval(GeneralSettings[i])
-#     with open("characters_to_ignore.txt","r") as CharacterIgnoreList:
-#         CharactersToIgnore=CharacterIgnoreList.read().split("\n")[1].split(";")
-        
-        
 
 def update_situation():
 	"""

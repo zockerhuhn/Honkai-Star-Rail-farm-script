@@ -29,12 +29,12 @@ def main():
                   ("Fuel", "fuel"),
                   ("Stellar-Jade", "stellar-jade")]
 
-	# def printSettings(): 
-	# 	print("\n\n") 
-	# 	settingsData = settings.get_input_data() 
+	def printSettings(): 
+		print("\n\n") 
+		settingsData = settings.get_input_data() 
 
-	# 	for key in settingsData.keys(): 
-	# 		print(f"{key}\t:\t{settingsData[key]}") 
+		for key in settingsData.keys(): 
+			print(f"{key}\t:\t{settingsData[key]}") 
 
 	settings = pm.Menu(title="Settings", 
 					width=WIDTH, 
@@ -57,8 +57,8 @@ def main():
 	settings.add.toggle_switch( 
 		title="Close game when  done", default=False, toggleswitch_id="ExitaAfterCompletion") 
 
-	# settings.add.button(title="Print Settings", action=printSettings, 
-	# 					font_color=WHITE, background_color=GREEN) 
+	settings.add.button(title="Print Settings", action=printSettings, 
+						font_color=WHITE, background_color=GREEN) 
 	settings.add.button(title="Restore Defaults", action=settings.reset_value, 
 						font_color=WHITE, background_color=RED) 
 	settings.add.button(title="Return To Main Menu", 

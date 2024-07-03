@@ -27,11 +27,11 @@ Does not yet retry if the whole team dies
 
 Go to the releases page and download the newest release (link:https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script/releases)
 
-Download the zip and extract it
+Follow the instructions on the
 
 ## Using the script
 
-To start the script run the main.exe file as administrator. (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
+To start the script run the main.exe file as administrator.  (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
 
 ___Your Antivirus might stop you from running the script, here is why:___ https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script/blob/zockerhuhn-patch-1/README.md#why-does-the-script-get-flagged-by-my-antivirus-software
 

@@ -29,7 +29,7 @@ Go to the releases page and download the newest release (link:https://github.com
 
 Download the zip and extract it
 
-run main.exe in the \dist\main folder as administrator
+Run main.exe in the \dist\main folder as administrator
 
 _The script needs administrator access to use the mouse in Star Rail. Star Rail for some reason requieres this_
 

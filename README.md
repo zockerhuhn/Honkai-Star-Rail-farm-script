@@ -45,7 +45,7 @@ To end the script early simply go into the Terminal and press 'ctrl + c'
 
 ## Updating the script
 
-To update the script simply go to the releases site again and download the new updatet version. (remember to delete the old version to not waste space on your harddrive) _depending on how difficult it is I might add an installer in the future that updates automatically 
+To update the script simply go to the releases site again and download the new updatet version. (remember to delete the old version to not waste space on your harddrive) _depending on how difficult it is I might add an installer in the future that updates automatically_
 
 # FAQ 
 

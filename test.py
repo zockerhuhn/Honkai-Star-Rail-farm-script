@@ -1,13 +1,3 @@
-from PIL import ImageGrab
-from PIL import ImageOps
-from PIL import ImageShow
-import time
-import pytesseract
-
-time.sleep(5)
-image = ImageGrab.grab(bbox=(670,495,1190,525))
-#print(str(image.getpixel((1662,65))))
-#ImageShow.show(image)
-image = ImageOps.solarize(image)
-ImageShow.show(image)
-print(pytesseract.image_to_string(image, lang='eng', config='--psm 6'))
+version https://git-lfs.github.com/spec/v1
+oid sha256:8e44030d3e29bc12a68afc7bf9969a6d71efd10803035e27d3ec409094bf0d56
+size 2523

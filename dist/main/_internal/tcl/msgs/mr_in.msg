@@ -1,6 +1,3 @@
-# created by tools/loadICU.tcl -- do not edit
-namespace eval ::tcl::clock {
-    ::msgcat::mcset mr_IN DATE_FORMAT "%d %M %Y"
-    ::msgcat::mcset mr_IN TIME_FORMAT_12 "%I:%M:%S %P"
-    ::msgcat::mcset mr_IN DATE_TIME_FORMAT "%d %M %Y %I:%M:%S %P %z"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:b7b1d379355a1d278e13ef557a887a662e84fb6a9b62b8e19a27927926270ef9
+size 257

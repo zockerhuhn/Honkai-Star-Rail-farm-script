@@ -1,5 +1,3 @@
-load_bigram_dawg	True
-tessedit_enable_bigram_correction	True
-tessedit_bigram_debug	3
-save_raw_choices	True
-save_alt_choices	True
+version https://git-lfs.github.com/spec/v1
+oid sha256:65e6583abc617a34d4091285181f2493d312c296a85629ac3c092d3b93b6e554
+size 129

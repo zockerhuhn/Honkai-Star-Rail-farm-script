@@ -1,12 +1,3 @@
-#################################################
-# Adaptive Matcher Using PreAdapted Templates
-#################################################
-
-classify_enable_adaptive_debugger	1
-matcher_debug_flags         6
-matcher_debug_level       1
-
-wordrec_display_splits          0
-wordrec_display_all_blobs       1
-wordrec_display_segmentations   2
-classify_debug_level		1
+version https://git-lfs.github.com/spec/v1
+oid sha256:0ed753a05ea60766f4269d81873b6390e937ea2df1758de91c57db7e92429555
+size 368

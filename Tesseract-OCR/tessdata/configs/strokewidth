@@ -1,12 +1,3 @@
-textord_show_blobs 0
-textord_debug_tabfind 3
-textord_tabfind_show_partitions 1
-textord_tabfind_show_initial_partitions 1
-textord_tabfind_show_columns 1
-textord_tabfind_show_blocks 1
-textord_tabfind_show_initialtabs 1
-textord_tabfind_show_finaltabs 1
-textord_tabfind_show_strokewidths 1
-textord_tabfind_show_vlines 0
-textord_tabfind_show_images 1
-tessedit_dump_pageseg_images 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:ffb140aadd3e26d0d9b3b355d592b50cff8b2c3ce0394b4a6de4fabc1c0942c9
+size 377

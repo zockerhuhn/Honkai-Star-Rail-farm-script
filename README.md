@@ -33,7 +33,7 @@ Download the zip and extract it
 
 To start the script run the main.exe file as administrator. (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
 
-___Your Antivirus might stop you from running the script, here is why: To make the script accessible to anyone I have to compile the python script to an exe, this way it can run on any pc. Windows and other Antivirus programs do not like this kind of exe (which is a good but in this case unfortunate thing) and stop it from running. I understand if you don't want to run the script because of this but I also encourage you to look at all the code yourself since it is completely open source___
+___Your Antivirus might stop you from running the script, here is why:___ 
 
 Change the settings to your needs
 
@@ -51,3 +51,7 @@ To update the script simply go to the releases site again and download the new u
 
 ## Will I be banned for using this script?
 While I can't and won't gurantee anything, probably not. I have been testing and using this script since over 2 months now and haven't been banned. All this script does is take Screenshots of small regions of the screen and use tesseract to read the text onscreen. Then it imitates a mouse and presses the right buttons according to the state of the game in the screenshot. You can test this by simply looking at a screenshot instead of ingame and the script won't know the difference.
+
+## Why does the script get flagged by my Antivirus software?
+
+To make the script accessible to anyone I have to compile the python script to an exe, this way it can run on any pc. Windows and other Antivirus programs do not like this kind of exe (which is a good but in this case unfortunate thing) and stop it from running. I understand if you don't want to run the script because of this but I also encourage you to look at all the code yourself since it is completely open source

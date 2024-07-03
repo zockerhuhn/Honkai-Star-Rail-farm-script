@@ -1,4 +1,3 @@
-This script is still in development
 I am not liable for any inconvenience the script might cause including spending ressources.
 
 # Features
@@ -25,12 +24,15 @@ Does not yet retry if the whole team dies
 # How to use
 
 ## Installing the script
+
 Go to the releases page and download the newest release (link:https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script/releases)
 
 Download the zip and extract it
 
 run main.exe in the \dist\main folder as administrator
+
 _The script needs administrator access to use the mouse in Star Rail. Star Rail for some reason requieres this_
+
 __Your Antivirus might stop you from running the script, here is why: To make the script accessible to anyone I have to compile the python script to an exe, this way it can run on any pc. Windows and other Antivirus programs do not like this kind of exe (which is a good but in this case unfortunate thing) and stop it from running. If you don't want to run the script because of this 
 
 
@@ -50,6 +52,7 @@ To end the script early simply go into the Terminal and press 'ctrl + c'
 ## Updating the script
 
 To update the script simply go to the releases site again and download the new updatet version. (remember to delete the old version to not waste space on your harddrive) _depending on how difficult it is I might add an installer in the future that updates automatically 
+
 # FAQ 
 
 ## Will I be banned for using this script?

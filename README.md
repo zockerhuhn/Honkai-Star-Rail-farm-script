@@ -13,44 +13,31 @@ Restart combat after done with challenge.
 
 Automatically refresh trailblaze power according to your settings (you decide what kind of ressources can be used).
 
-Exit the challenge completed screen when desired reward amount is reached (view issues)
+Exit the challenge completed screen when desired amount of rewards or waves are reached
 
-Close game after reaching desired reward amount if setting is set to true
+Close game after reaching desired reward amount if that setting is set to true
 
-Decide which characters to ignore when they are down
+Decide a character which gets ignored when they are down
 
-supports relic domains if setting _SkipRewardCount_ is True
+supports farming materials, relics and bosses. Setting it to relics only counts waves so you can use it for any activity with the normal challenge completed screen
 
 ## Planned
-Revive downed characters during combat
-
-Start multiple from user specified reward challenges back to back
+Revive characters that got downed in combat
 
 # Known Issues
-If challenging _domains_ with rewards that can differ in rarity the script always uses the rarest drop that got obtained and adds it to the Collected counter. This will be fixed in the future
+Does not yet retry if the whole team dies
 
 # How to use
-Since the script is currently still in development this is a bit complicated, but possible. Im Currently working on making the installation significantly easier, I don't recommend using/installing it until that is finished 
 
 ## Installing the script
+Go to the releases page and download the newest release (link:[link to releases])
 
-### install general software
-Install git on your PC
+Download the zip and extract it
 
-Install Python on your PC (available in the microsoft store)
+run main.exe in the \dist\main folder as administrator
+_The script needs administrator access to use the mouse in Star Rail. Star Rail for some reason requieres this_
+__Your Antivirus might stop you from running the script, here is why: To make the script accessible to anyone I have to compile the python script to an exe, this way it can run on any pc. Windows and other Antivirus programs do not like this kind of exe (which is a good but in this case unfortunate thing) and stop it from running. If you don't want to run the script because of this 
 
-Install tesseract OCR (__Do not change the path of this installation or the script will break__ (_if you know what you're doing you can change this but you will also have to change the path in the script_))
-Direct install link: https://github.com/UB-Mannheim/tesseract/releases/download/v5.4.0.20240606/tesseract-ocr-w64-setup-5.4.0.20240606.exe
-__This software is used to read the text and numbers from the screen by taking a screenshot of the specific area and then using tesseract to analyse it__
-
-### Clone the repository
-Choose where you want to install the script (I recommend documents or desktop) (It will install in a new folder, you don't have to create one)
-
-Press 'WIN + r' on your keyboard and enter cmd, this should open up a terminal
-
-Enter 'cd [your_chosen_path]'
-
-Enter 'git clone https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script.git'
 
 ## Using the script
 To change settings open the folder where the script is installed and right click the settings.py file. Select open with and open it with a Texteditor of your choice (the default editor of windows should work fine)

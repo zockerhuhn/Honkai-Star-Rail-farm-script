@@ -1,14 +1,3 @@
-# created by tools/tclZIC.tcl - do not edit
-
-set TZData(:Asia/Tokyo) {
-    {-9223372036854775808 33539 0 LMT}
-    {-2587712400 32400 0 JST}
-    {-683802000 36000 1 JDT}
-    {-672310800 32400 0 JST}
-    {-654771600 36000 1 JDT}
-    {-640861200 32400 0 JST}
-    {-620298000 36000 1 JDT}
-    {-609411600 32400 0 JST}
-    {-588848400 36000 1 JDT}
-    {-577962000 32400 0 JST}
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:3da522fa88541a375d53f30a0b62dc4a305fa0315fee534b7998c9e0a239450a
+size 388

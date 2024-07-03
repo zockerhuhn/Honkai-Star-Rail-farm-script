@@ -1,5 +1,3 @@
-# created by tools/tclZIC.tcl - do not edit
-if {![info exists TZData(Etc/GMT)]} {
-    LoadTimeZoneFile Etc/GMT
-}
-set TZData(:GMT+0) $TZData(:Etc/GMT)
+version https://git-lfs.github.com/spec/v1
+oid sha256:be48462ccfbb3aee19597f082a17c2c5d2fd8bb1c9122245efab0a51f8f413b0
+size 155

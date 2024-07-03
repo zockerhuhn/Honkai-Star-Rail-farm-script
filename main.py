@@ -27,7 +27,7 @@ CharacterToIgnore:str
 pygame.init() 
 
 # Screen 
-WIDTH, HEIGHT = 700, 600
+WIDTH, HEIGHT = 750, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT)) 
 
 # Standard RGB colors 
@@ -71,7 +71,6 @@ def set_settings():
     global mode
     global CharacterToIgnore
     global AmountToCollect
-    print(SettingsData["AllowedRessources"])
     for i in SettingsData["AllowedRessources"][len(SettingsData["AllowedRessources"])-1]:
         match i:
             case 0:
@@ -86,7 +85,7 @@ def set_settings():
     mode = SettingsData["ChallengeType"][len(SettingsData["ChallengeType"])-1]
     CharacterToIgnore = SettingsData["IgnoreChar"]
     if SettingsData["AmountToCollect"] == "":
-        raise Exeption("Amount to collect setting is empty")
+        raise Exception("Amount to collect setting is empty")
     AmountToCollect = int(SettingsData["AmountToCollect"])
  
         
@@ -128,7 +127,7 @@ def close_game():
 def mse(imageA, imageB): #https://github.com/CelestialCrafter/hsr-auto-auto-battle/blob/master/main.py#L3
     err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
     err /= float(imageA.shape[0] * imageA.shape[1])
-    print(err)
+    #print(err)
     return err
 
 
@@ -150,12 +149,12 @@ def update_rewardcount():
     image = ImageGrab.grab(bbox=RewardOneShape)
     global FailCounter
     try:
-        print(int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1]))
+        int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1])
         TwoRows = False
     except:
         image = ImageGrab.grab(bbox=RewardTwoShape)
         try:
-            print(int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1]))
+            int(pytesseract.image_to_string(image, lang='eng', config='--psm 6').split(" ")[1])
             TwoRows = True
         except:
             FailCounter += 1
@@ -172,8 +171,10 @@ def update_rewardcount():
                 image = ImageGrab.grab(bbox = FirstItemShapeTwoRows)
             else:
                 image = ImageGrab.grab(bbox = FirstItemShapeOneRow)
-            image.save("temp/screenshot_temp.png")
-            cvimage = cv.imread("temp/screenshot_temp.png")
+            image.save("C:\\Users\\Anwender\\AppData\\Local\\Temp\\screenshot_temp.png")
+            cvimage =  np.array(image) 
+            # Convert RGB to BGR 
+            cvimage = cvimage[:, :, ::-1].copy()
             rarity = determine_rarity(cvimage)
             match rarity:
                 case 4:
@@ -188,17 +189,6 @@ def update_rewardcount():
             AmountCollected += 1
         case _:
             raise Exception("invalid mode")
-            
-
-# def heal():
-# 		pyautogui.press('m')
-# 		time.sleep(1.5)
-# 		pyautogui.click(StarRailMapX,StarRailMapY)
-# 		pyautogui.moveRel(1000,0)
-# 		time.sleep(2.5)
-# 		pyautogui.moveRel(-1,0)
-# 		pyautogui.dragRel(-1000,0, 2, mouseDownUp=False)
-# 		pyautogui.click(Jarilo_VIX,Jarilo_VIY)
 
 
 def farm():
@@ -206,10 +196,6 @@ def farm():
     global AmountToCollect
     global image
     global FailCounter
-    if mode == 2:
-        AmountToCollect = int(input("Specify amount of cycles\n"))
-    else:
-        AmountToCollect = int(input("Specify amount of ressources to collect\n"))
     delay(3)
     while True:
         update_situation()
@@ -219,8 +205,7 @@ def farm():
                 delay(3)
                 continue
             case "ChallengeCompleted":
-                if not SkipRewardCount:
-                    update_rewardcount()
+                update_rewardcount()
                 if AmountCollected >= AmountToCollect:
                     print(f"Collected enough ressources ({(int(AmountCollected*100))/100}), terminating...")
                     if ExitGameAfterCompletion:
@@ -301,6 +286,7 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
         pygame.quit()
         set_settings()
         farm()
+        input()
         exit()
 
     settings = pm.Menu(title="Settings", 

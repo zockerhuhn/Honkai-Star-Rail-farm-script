@@ -30,6 +30,7 @@ Go to the releases page and download the newest release (link:https://github.com
 Download the zip and extract it
 
 run main.exe in the \dist\main folder as administrator
+
 _The script needs administrator access to use the mouse in Star Rail. Star Rail for some reason requieres this_
 
 ___Your Antivirus might stop you from running the script, here is why: To make the script accessible to anyone I have to compile the python script to an exe, this way it can run on any pc. Windows and other Antivirus programs do not like this kind of exe (which is a good but in this case unfortunate thing) and stop it from running. If you don't want to run the script because of this___

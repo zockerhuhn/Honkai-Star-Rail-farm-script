@@ -29,17 +29,11 @@ Go to the releases page and download the newest release (link:https://github.com
 
 Download the zip and extract it
 
-Run main.exe in the \dist\main folder as administrator
-
-_The script needs administrator access to use the mouse in Star Rail. Star Rail for some reason requieres this_
-
-___Your Antivirus might stop you from running the script, here is why: To make the script accessible to anyone I have to compile the python script to an exe, this way it can run on any pc. Windows and other Antivirus programs do not like this kind of exe (which is a good but in this case unfortunate thing) and stop it from running. I understand if you don't want to run the script because of this but I also encourage you to look at all the code yourself since it is completely open source___
-
-
 ## Using the script
-To change settings open the folder where the script is installed and right click the settings.py file. Select open with and open it with a Texteditor of your choice (the default editor of windows should work fine)
 
 To start the script run the main.exe file as administrator. (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
+
+___Your Antivirus might stop you from running the script, here is why: To make the script accessible to anyone I have to compile the python script to an exe, this way it can run on any pc. Windows and other Antivirus programs do not like this kind of exe (which is a good but in this case unfortunate thing) and stop it from running. I understand if you don't want to run the script because of this but I also encourage you to look at all the code yourself since it is completely open source___
 
 Change the settings to your needs
 

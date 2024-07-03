@@ -27,13 +27,11 @@ Does not yet retry if the whole team dies
 
 Go to the releases page and download the newest release (link:https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script/releases)
 
-Follow the instructions on the
+Follow the instructions of the installer (setting a menu shortcut is advisable)
 
 ## Using the script
 
-To start the script run the main.exe file as administrator.  (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
-
-___Your Antivirus might stop you from running the script, here is why:___ https://github.com/zockerhuhn/Honkai-Star-Rail-farm-script/blob/zockerhuhn-patch-1/README.md#why-does-the-script-get-flagged-by-my-antivirus-software
+To start the script run the Autofarmer app as administrator. (main.exe in the files)  (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
 
 Change the settings to your needs
 
@@ -45,13 +43,9 @@ To end the script early simply go into the Terminal and press 'ctrl + c'
 
 ## Updating the script
 
-To update the script simply go to the releases site again and download the new updatet version. (remember to delete the old version to not waste space on your harddrive) _depending on how difficult it is I might add an installer in the future that updates automatically_
+To update the script simply go to the releases site again and download the new updatet version.  _depending on how difficult it is I might add an installer in the future that updates automatically_
 
 # FAQ 
 
 ## Will I be banned for using this script?
 While I can't and won't gurantee anything, probably not. I have been testing and using this script since over 2 months now and haven't been banned. All this script does is take Screenshots of small regions of the screen and use tesseract to read the text onscreen. Then it imitates a mouse and presses the right buttons according to the state of the game in the screenshot. You can test this by simply looking at a screenshot instead of ingame and the script won't know the difference.
-
-## Why does the script get flagged by my Antivirus software?
-
-To make the script accessible to anyone I have to compile the python script to an exe, this way it can run on any pc. Windows and other Antivirus programs do not like this kind of exe (which is a good but in this case unfortunate thing) and stop it from running. I understand if you don't want to run the script because of this but I also encourage you to look at all the code yourself since it is completely open source

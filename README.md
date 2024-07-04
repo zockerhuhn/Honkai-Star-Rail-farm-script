@@ -21,6 +21,8 @@ Revive characters that got downed in combat
 # Known Issues
 Does not yet retry if the whole team dies
 
+Reward tracking is somtimes behaving weird. Will be fixed in V2.0.1
+
 # How to use
 
 ## Installing the script

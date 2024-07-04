@@ -63,6 +63,9 @@ FirstItemShapeTwoRows:tuple = 634, 502, 659, 612
 FirstItemShapeOneRow:tuple = 848, 496, 867, 579
 
 def set_settings():
+    """
+    Sets the global variables according to what was set in the settings
+    """
     global SettingsData
     global UseReserve
     global UseFuel

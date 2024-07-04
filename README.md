@@ -36,6 +36,7 @@ Follow the instructions of the installer (setting a menu shortcut is advisable)
 To start the script run the Autofarmer app as administrator. (main.exe in the files)  (_For some reason Star Rail requieres you to have administrator privileges to use the mouse while tabbed into the game_)
 
 Change the settings to your needs
+test
 
 In Star Rail start your desired combat _domain_, choose your characters and enter combat (turn on autoplay)
 

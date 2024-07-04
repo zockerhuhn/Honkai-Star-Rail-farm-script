@@ -1,4 +1,4 @@
-I am not liable for any inconvenience the script might cause including spending ressources.
+%I am not liable for any inconvenience the script might cause including spending ressources.
 
 # Features
 

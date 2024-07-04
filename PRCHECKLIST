@@ -16,8 +16,3 @@
   --commit-title "Update README.md" --files main.py,main.exe --target Main +task+ Exit bec of downed character
   --commit-title "Update README.md" --files main.py,main.exe --target Main +task+ Ignore downed character
   --commit-title "Update README.md" --files main.py,main.exe --target Main +task+ Multiple downed character
-
-+title+ test
-  +comment+ test
-  +task+ test
-  # test

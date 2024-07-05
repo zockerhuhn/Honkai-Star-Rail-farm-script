@@ -11,6 +11,8 @@ from time import sleep as delay
 
 
 #global variables
+Failed:bool = False
+FailReason:str=""
 AmountCollected = 0
 AmountToCollect:int
 CurrentState = "Temp"
@@ -62,6 +64,12 @@ StarRailMapY = 140
 FirstItemShapeTwoRows:tuple = 634, 502, 659, 612
 FirstItemShapeOneRow:tuple = 848, 496, 867, 579
 
+DownedConfirmButton:tuple = 0, 0
+
+DownedConfirmWindow:tuple = 0, 0, 0, 0
+
+DownedNoRessourcesWindow:tuple = 0, 0, 0, 0
+
 def set_settings():
     """
     Sets the global variables according to what was set in the settings
@@ -88,10 +96,11 @@ def set_settings():
     mode = SettingsData["ChallengeType"][len(SettingsData["ChallengeType"])-1]
     CharacterToIgnore = SettingsData["IgnoreChar"]
     if SettingsData["AmountToCollect"] == "":
-        raise Exception("Amount to collect setting is empty")
+        FailReason = "Amount to collect setting is empty"
+        Failed = True
+        return
     AmountToCollect = int(SettingsData["AmountToCollect"])
- 
-        
+
 
 def update_situation():
     """
@@ -162,8 +171,8 @@ def update_rewardcount():
         except:
             FailCounter += 1
             if FailCounter >= FailCountMax:
-                print(f"failed {FailCounter} times which is over max amount ({FailCountMax}), terminating...")
-                raise IndexError
+                FailReason = f"failed {FailCounter} times which is over max amount ({FailCountMax})"
+                Failed = True
             print(f"somehow didn't find a reward for single and double row, trying again {FailCounter}/{FailCountMax}")
             update_rewardcount()
             return()
@@ -185,7 +194,8 @@ def update_rewardcount():
                 case 3:
                     AmountCollected += float(int(rewards[1])/3) + float(int(rewards[2])/9)
                 case _:
-                    raise Exception("Unknown Rarity, made it into calculation")
+                    Failed = True
+                    FailReason = "Unknown Rarity, made it into calculation"
         case 1:
             AmountCollected += rewards[1]
         case 2:
@@ -194,13 +204,26 @@ def update_rewardcount():
             raise Exception("invalid mode")
 
 
-def farm():
-    global AmountCollected
-    global AmountToCollect
-    global image
-    global FailCounter
+def heal():
+    global image, AmountCollected, AmountToCollect, Failed, FailReason
+    for i in range(4):
+        pyautogui.press(str(i+1))
+        image = ImageGrab.grab(DownedConfirmWindow)
+        if "healed" in pytesseract.image_to_string(image, lang='eng', config='--psm 6'):
+            pyautogui.click(DownedConfirmButton)
+            image = ImageGrab.grab(DownedNoRessourcesWindow)
+            if "no ressources" in pytesseract.image_to_string(image, lang='eng', config='--psm 6'):
+                FailReason = "No revive ressources"
+                Failed = True
+                break
+            print(f"revived {i+1}")
+        delay(2)
+
+
+def mainloop():
+    global AmountCollected, image, AmountToCollect, Failed, FailReason, ExitGameAfterCompletion, CurrentState
     delay(3)
-    while True:
+    while not Failed:
         update_situation()
         print(CurrentState)
         match CurrentState:
@@ -237,10 +260,8 @@ def farm():
                 elif "Consume" in ReplenishString and UseStellarJade:
                     print("Using Stellar Jade to replenish Trailblaze Power")
                 else:
-                    print(f"Can't use any replenishment, reached {(int(AmountCollected*100))/100}/{AmountToCollect}, ending...")
-                    if ExitGameAfterCompletion:
-                        close_game()
-                        break
+                    FailReason = "Can't use any replenishment"
+                    Failed = True
                     pyautogui.click(760,735)
                     delay(0.75)
                     pyautogui.click(StopButtonX,BothButtonY)
@@ -261,14 +282,11 @@ def farm():
                     pyautogui.click(1185,679)
                     continue
                 else:
-                    print("stopping...")
                     pyautogui.click(764,675)
                     delay(0.75)
                     pyautogui.click(StopButtonX, BothButtonY)
                     delay(2)
-                    if ExitGameAfterCompletion:
-                        close_game()
-                    break
+                    heal()
 
 
 def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
@@ -288,7 +306,7 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
         setSettings()
         pygame.quit()
         set_settings()
-        farm()
+        mainloop()
         input()
         exit()
 
@@ -341,3 +359,5 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
  
 if __name__ == "__main__":
     GUI()
+    if Failed:
+        print(f"Failed to collect enough ressources ({(int(AmountCollected*100))/100}/{AmountToCollect}), reason: {FailReason}")

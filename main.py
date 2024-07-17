@@ -19,10 +19,10 @@ CurrentState = "Temp"
 image: Image.Image
 FailCounter:int = 0
 SettingsData:None
-UseReserve:bool
-UseFuel:bool
-UseStellarJade:bool
-ExitGameAfterCompletion:bool
+UseReserve:bool = False
+UseFuel:bool = False
+UseStellarJade:bool = False
+ExitGameAfterCompletion:bool = False
 mode:int
 CharacterToIgnore:str
 
@@ -64,11 +64,13 @@ StarRailMapY = 140
 FirstItemShapeTwoRows:tuple = 634, 502, 659, 612
 FirstItemShapeOneRow:tuple = 848, 496, 867, 579
 
-DownedConfirmButton:tuple = 0, 0
+DownedConfirmButton:tuple = 1178, 819
 
-DownedConfirmWindow:tuple = 0, 0, 0, 0
+DownedConfirmWindow:tuple = 858, 256, 1066, 287
 
-DownedNoRessourcesWindow:tuple = 0, 0, 0, 0
+DownedNoRessourcesWindow:tuple = 1040, 561, 1324, 588
+
+CombatStartButton:tuple = 1600, 980
 
 def set_settings():
     """
@@ -139,7 +141,6 @@ def close_game():
 def mse(imageA, imageB): #https://github.com/CelestialCrafter/hsr-auto-auto-battle/blob/master/main.py#L3
     err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
     err /= float(imageA.shape[0] * imageA.shape[1])
-    #print(err)
     return err
 
 
@@ -208,18 +209,20 @@ def heal():
     global image, AmountCollected, AmountToCollect, Failed, FailReason
     for i in range(4):
         pyautogui.press(str(i+1))
+        delay(1)
         image = ImageGrab.grab(DownedConfirmWindow)
-        if "healed" in pytesseract.image_to_string(image, lang='eng', config='--psm 6'):
+        if "Quick" in pytesseract.image_to_string(image, lang='eng', config='--psm 6'):
             pyautogui.click(DownedConfirmButton)
             image = ImageGrab.grab(DownedNoRessourcesWindow)
-            if "no ressources" in pytesseract.image_to_string(image, lang='eng', config='--psm 6'):
+            print(pytesseract.image_to_string(image, lang='eng', config='--psm 6'))
+            if "No" in pytesseract.image_to_string(image, lang='eng', config='--psm 6'):
                 FailReason = "No revive ressources"
                 Failed = True
                 break
             print(f"revived {i+1}")
-        delay(2)
+        delay(3)
 
-
+3
 def mainloop():
     global AmountCollected, image, AmountToCollect, Failed, FailReason, ExitGameAfterCompletion, CurrentState
     delay(3)
@@ -259,6 +262,7 @@ def mainloop():
                     print("Using fuel to replenish Trailblaze Power")
                 elif "Consume" in ReplenishString and UseStellarJade:
                     print("Using Stellar Jade to replenish Trailblaze Power")
+                    pyautogui.click()
                 else:
                     FailReason = "Can't use any replenishment"
                     Failed = True
@@ -287,6 +291,12 @@ def mainloop():
                     pyautogui.click(StopButtonX, BothButtonY)
                     delay(2)
                     heal()
+                    if not Failed:
+                        pyautogui.write('f')
+                        delay(1.5)
+                        pyautogui.click(CombatStartButton)
+                        delay(0.5)
+                        pyautogui.click(CombatStartButton)
 
 
 def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
@@ -307,7 +317,11 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
         pygame.quit()
         set_settings()
         mainloop()
-        input()
+        if Failed:
+            print(f"Failed to collect enough ressources ({(int(AmountCollected*100))/100}/{AmountToCollect}), reason: {FailReason}")
+            input()
+        elif not ExitGameAfterCompletion:
+            input()
         exit()
 
     settings = pm.Menu(title="Settings", 
@@ -359,5 +373,3 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
  
 if __name__ == "__main__":
     GUI()
-    if Failed:
-        print(f"Failed to collect enough ressources ({(int(AmountCollected*100))/100}/{AmountToCollect}), reason: {FailReason}")

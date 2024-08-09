@@ -1,18 +1,19 @@
 # PRCHECKLIST generated online at https://mibexsoftware.bitbucket.io/checklist-buddy-editor/
 
---commit-title-except "Update README.md" --files main.py,main.exe --target Main +title+ Tested
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +comment+ Rewards tracking
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ 2/3 rarity rewards tracking
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ 1 rarity rewards tracking
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ Cycles/waves based rewards tracking
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +comment+ Replenishment ressources
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ Reserve
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ Fuel
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +comment+ Stellar Jade
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +comment+ Exiting
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ Normal exit
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ Exit with game closing
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +comment+ Downed character handling
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ Exit bec of downed character
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ Ignore downed character
-  --commit-title-except "Update README.md" --files main.py,main.exe --target Main +task+ Multiple downed character
+--commit-title-except "Update Readme.md" --files main.py --target main +title+ Tested
+  --commit-title-except "Update Readme.md" --files main.py --target main +comment+ Rewards tracking
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ 2/3 rarity rewards tracking
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ 1 rarity rewards tracking
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Cycles/waves based rewards tracking
+  --commit-title-except "Update Readme.md" --files main.py --target main +comment+ Replenishment ressources
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Reserve
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Fuel
+  --commit-title-except "Update Readme.md" --files main.py --target main +comment+ Stellar Jade
+  --commit-title-except "Update Readme.md" --files main.py --target main +comment+ Exiting
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Normal exit
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Exit with game closing
+  --commit-title-except "Update Readme.md" --files main.py --target main +comment+ Downed character handling
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Revive downed character
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Ignore downed character
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Multiple downed character
+  --commit-title-except "Update Readme.md" --files main.py --target main +task+ Use Support 1-6

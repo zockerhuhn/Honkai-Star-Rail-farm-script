@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:64466ea3759301e88c29ad1a833cdcbbc495eb4a5a3ac45e7b2987fecd6702bd
-size 159
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Etc/GMT)]} {
+    LoadTimeZoneFile Etc/GMT
+}
+set TZData(:Etc/GMT+0) $TZData(:Etc/GMT)

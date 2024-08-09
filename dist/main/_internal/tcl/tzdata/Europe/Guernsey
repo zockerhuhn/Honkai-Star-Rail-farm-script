@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f7046808a8e80b7ae449d1a49ae3e480096736b7d3f554a240c7dfb10f82076a
-size 183
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Europe/London)]} {
+    LoadTimeZoneFile Europe/London
+}
+set TZData(:Europe/Guernsey) $TZData(:Europe/London)

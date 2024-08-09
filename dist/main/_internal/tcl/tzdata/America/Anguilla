@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f38610019c0a2c18ac71f5aa108b9647d9b5c01dcb55211afb8312308c41fe70
-size 202
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(America/Puerto_Rico)]} {
+    LoadTimeZoneFile America/Puerto_Rico
+}
+set TZData(:America/Anguilla) $TZData(:America/Puerto_Rico)

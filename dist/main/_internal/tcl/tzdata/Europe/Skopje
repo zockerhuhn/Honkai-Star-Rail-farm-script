@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:52f20858433261b15797b64f0a09cee95d552ef93b5daa7c141bfab6d718c345
-size 187
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Europe/Belgrade)]} {
+    LoadTimeZoneFile Europe/Belgrade
+}
+set TZData(:Europe/Skopje) $TZData(:Europe/Belgrade)

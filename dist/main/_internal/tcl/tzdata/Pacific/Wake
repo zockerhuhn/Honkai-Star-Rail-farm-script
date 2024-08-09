@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2d18d9ab10c9d8947a88d486d0bc0b0523049a2ed2ca2fbdfa0577e40f189d13
-size 150
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Pacific/Wake) {
+    {-9223372036854775808 39988 0 LMT}
+    {-2177492788 43200 0 +12}
+}

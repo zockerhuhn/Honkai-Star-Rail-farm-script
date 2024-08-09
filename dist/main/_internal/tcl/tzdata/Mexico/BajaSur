@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2e6e32a40487f0146b59150b66ff74901ca853b12d47922819af23eea5b4149c
-size 191
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(America/Mazatlan)]} {
+    LoadTimeZoneFile America/Mazatlan
+}
+set TZData(:Mexico/BajaSur) $TZData(:America/Mazatlan)

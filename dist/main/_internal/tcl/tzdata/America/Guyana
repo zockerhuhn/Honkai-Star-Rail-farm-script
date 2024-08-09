@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4078d2e361d04a66f22f652e3810cdf7f630cf89399b47e4ec7b1d32b400fd85
-size 248
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:America/Guyana) {
+    {-9223372036854775808 -13959 0 LMT}
+    {-1843589241 -14400 0 -04}
+    {-1730577600 -13500 0 -0345}
+    {176096700 -10800 0 -03}
+    {701841600 -14400 0 -04}
+}

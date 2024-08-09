@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:697cc0a75ae31fe9c2d85fb25dca0afa5d0df9c523a2dfad2e4a36893be75fba
-size 1138
+#
+# Ttk widget set: progress bar utilities.
+#
+
+namespace eval ttk::progressbar {
+    variable Timers	;# Map: widget name -> after ID
+}
+
+# Autoincrement --
+#	Periodic callback procedure for autoincrement mode
+#
+proc ttk::progressbar::Autoincrement {pb steptime stepsize} {
+    variable Timers
+
+    if {![winfo exists $pb]} {
+    	# widget has been destroyed -- cancel timer
+	unset -nocomplain Timers($pb)
+	return
+    }
+
+    set Timers($pb) [after $steptime \
+    	[list ttk::progressbar::Autoincrement $pb $steptime $stepsize] ]
+
+    $pb step $stepsize
+}
+
+# ttk::progressbar::start --
+#	Start autoincrement mode.  Invoked by [$pb start] widget code.
+#
+proc ttk::progressbar::start {pb {steptime 50} {stepsize 1}} {
+    variable Timers
+    if {![info exists Timers($pb)]} {
+	Autoincrement $pb $steptime $stepsize
+    }
+}
+
+# ttk::progressbar::stop --
+#	Cancel autoincrement mode. Invoked by [$pb stop] widget code.
+#
+proc ttk::progressbar::stop {pb} {
+    variable Timers
+    if {[info exists Timers($pb)]} {
+	after cancel $Timers($pb)
+	unset Timers($pb)
+    }
+    $pb configure -value 0
+}
+
+

@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bf4fab3ae72cc7fa4f9e34cf0551a85c54a084cd826df5d9cc684de6188e84db
-size 187
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(America/Denver)]} {
+    LoadTimeZoneFile America/Denver
+}
+set TZData(:America/Shiprock) $TZData(:America/Denver)

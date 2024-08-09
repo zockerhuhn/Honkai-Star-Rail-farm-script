@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9a15867255b43a954ca60da11660f157553aab6a15c50acd49d182276e0cf4cc
-size 184
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Africa/Maputo)]} {
+    LoadTimeZoneFile Africa/Maputo
+}
+set TZData(:Africa/Bujumbura) $TZData(:Africa/Maputo)

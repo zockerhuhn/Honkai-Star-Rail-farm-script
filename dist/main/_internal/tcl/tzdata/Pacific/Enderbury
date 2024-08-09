@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:790e6b48b261d6def7d183cc8f38fb8d8a6e3efb8844281efabb2dfd621e53b5
-size 188
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Pacific/Kanton)]} {
+    LoadTimeZoneFile Pacific/Kanton
+}
+set TZData(:Pacific/Enderbury) $TZData(:Pacific/Kanton)

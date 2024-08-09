@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:234811fc8b0f8ff2b847d9cc3982f1699df1d21a43c74dce45ba855d22520007
-size 122
+# Encoding file: iso2022-kr, escape-driven
+E
+name		iso2022-kr
+init		\x1b$)C
+final		{}
+iso8859-1	\x0f
+ksc5601		\x0e

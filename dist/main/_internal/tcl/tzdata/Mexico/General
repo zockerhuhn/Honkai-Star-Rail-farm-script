@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2dff1b83fecfad5c27ec47b206696c29b91398f8185b5d406a66fa9e0aeca93f
-size 200
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(America/Mexico_City)]} {
+    LoadTimeZoneFile America/Mexico_City
+}
+set TZData(:Mexico/General) $TZData(:America/Mexico_City)

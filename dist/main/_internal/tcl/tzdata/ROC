@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9aec39777013b23d63d0509ebb2f01d57a2c1592264dbb19ce2c61c7d7ddd8de
-size 165
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Asia/Taipei)]} {
+    LoadTimeZoneFile Asia/Taipei
+}
+set TZData(:ROC) $TZData(:Asia/Taipei)

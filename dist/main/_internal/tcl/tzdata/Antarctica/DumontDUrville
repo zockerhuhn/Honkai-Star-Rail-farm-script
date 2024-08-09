@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:96f2ab9a9ffcd10598fdf105f68460cc4b4ebc1f18054d1bc8e39df6ad24d1ac
-size 214
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Pacific/Port_Moresby)]} {
+    LoadTimeZoneFile Pacific/Port_Moresby
+}
+set TZData(:Antarctica/DumontDUrville) $TZData(:Pacific/Port_Moresby)

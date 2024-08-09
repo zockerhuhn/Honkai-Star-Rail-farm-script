@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7213997bb9cf9d384a7002b8c8efef25c01aba6083d9835a16d583d5dcee40a0
-size 147
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Africa/Abidjan) {
+    {-9223372036854775808 -968 0 LMT}
+    {-1830383032 0 0 GMT}
+}

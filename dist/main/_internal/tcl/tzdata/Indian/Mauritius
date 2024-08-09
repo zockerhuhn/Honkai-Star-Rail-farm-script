@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a2b1b93cbeecbd900ed71e61a4932509eb52688e97a6015dad067066d0d42072
-size 272
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Indian/Mauritius) {
+    {-9223372036854775808 13800 0 LMT}
+    {-1988164200 14400 0 +04}
+    {403041600 18000 1 +04}
+    {417034800 14400 0 +04}
+    {1224972000 18000 1 +04}
+    {1238274000 14400 0 +04}
+}

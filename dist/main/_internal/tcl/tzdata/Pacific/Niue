@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:869cca656be88e4e7481c75737c3656bab6924ad1751505815ac719c59269842
-size 184
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Pacific/Niue) {
+    {-9223372036854775808 -40780 0 LMT}
+    {-543069620 -40800 0 -1120}
+    {-173623200 -39600 0 -11}
+}

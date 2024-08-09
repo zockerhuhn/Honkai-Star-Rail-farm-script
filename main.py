@@ -25,6 +25,7 @@ UseStellarJade:bool = False
 ExitGameAfterCompletion:bool = False
 mode:int
 CharacterToIgnore:str
+SupportCharacter:int
 
 pygame.init() 
 
@@ -72,6 +73,14 @@ DownedNoRessourcesWindow:tuple = 1040, 561, 1324, 588
 
 CombatStartButton:tuple = 1600, 980
 
+AddSupportButton:tuple = 1710, 740
+
+FirstSupportChar:tuple = 300, 230
+
+SupportOffset:int = 140
+
+SupportConfirmButton:tuple = 1674, 984
+
 def set_settings():
     """
     Sets the global variables according to what was set in the settings
@@ -84,6 +93,7 @@ def set_settings():
     global mode
     global CharacterToIgnore
     global AmountToCollect
+    global SupportCharacter
     for i in SettingsData["AllowedRessources"][len(SettingsData["AllowedRessources"])-1]:
         match i:
             case 0:
@@ -102,6 +112,7 @@ def set_settings():
         Failed = True
         return
     AmountToCollect = int(SettingsData["AmountToCollect"])
+    SupportCharacter = int(SettingsData["SupportChar"][1])
 
 
 def update_situation():
@@ -222,9 +233,9 @@ def heal():
             print(f"revived {i+1}")
         delay(3)
 
-3
+
 def mainloop():
-    global AmountCollected, image, AmountToCollect, Failed, FailReason, ExitGameAfterCompletion, CurrentState
+    global AmountCollected, image, AmountToCollect, Failed, FailReason, ExitGameAfterCompletion, CurrentState, SupportCharacter
     delay(3)
     while not Failed:
         update_situation()
@@ -296,6 +307,13 @@ def mainloop():
                         delay(1.5)
                         pyautogui.click(CombatStartButton)
                         delay(0.5)
+                        if SupportCharacter >= 1:
+                            pyautogui.click(AddSupportButton)
+                            delay(0.5)
+                            pyautogui.click(FirstSupportChar[0], FirstSupportChar[1]+(SupportOffset*(SupportCharacter-1)))
+                            delay(0.5)
+                            pyautogui.click(SupportConfirmButton)
+                            delay(0.5)
                         pyautogui.click(CombatStartButton)
 
 
@@ -307,6 +325,14 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
     ressources = [("Reserve", "resereve"),
                     ("Fuel", "fuel"),
                     ("Stellar-Jade", "stellar-jade")]
+    
+    SupportCharIndex = [("None", "0"),
+                    ("1", "1"),
+                    ("2", "2"),
+                    ("3", "3"),
+                    ("4", "4"),
+                    ("5", "5"),
+                    ("6", "6"),]
 
     def setSettings():
         global SettingsData
@@ -334,7 +360,12 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
     settings._theme.widget_alignment = pm.locals.ALIGN_LEFT 
 
     settings.add.dropselect(title="Challenge type", items=type, 
-                            dropselect_id="ChallengeType", default=0,selection_box_height=4) 
+                            dropselect_id="ChallengeType", default=0,selection_box_height=4)
+    
+    settings.add.dropselect(title="Support Character", items=SupportCharIndex, 
+                            dropselect_id="SupportChar", default=0,selection_box_height=5) 
+
+    
     settings.add.dropselect_multiple(title="Allowed Replenishment-ressources", items=ressources,
                                     dropselect_multiple_id="AllowedRessources",
                                     open_middle=True, max_selected=0, default=0,
@@ -343,7 +374,7 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
     settings.add.text_input(title="Character to ignore when down (case sensitive) :", textinput_id="IgnoreChar") 
  
     settings.add.toggle_switch( 
-        title="Close game when  done", default=False, toggleswitch_id="ExitAfterCompletion") 
+        title="Close game when done", default=False, toggleswitch_id="ExitAfterCompletion") 
 
     settings.add.text_input(title="Amount of ressources to farm/waves to complete :", textinput_id="AmountToCollect") 
 

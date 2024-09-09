@@ -3,25 +3,25 @@ I am not liable for any inconvenience the script might cause including and not l
 # Features
 
 ## Working
-Restart combat after done with challenge.
+Restart combat after being done with challenge.
 
 Automatically refresh trailblaze power according to your settings (you decide what kind of ressources can be used).
 
-Exit the challenge completed screen when desired amount of rewards or waves are reached
+Exit the challenge completed screen when desired amount of rewards or waves are reached.
 
-Close game after reaching desired reward amount if that setting is set to true
+Close game after reaching desired reward amount if that setting is set to true.
 
-Decide a character which gets ignored when they are down
+Revive characters that got downed in combat.
 
-supports farming materials, relics and bosses. Setting it to relics only counts waves so you can use it for any activity with the normal challenge completed screen
+Decide a character which gets ignored when they are downed.
+
+supports farming materials, relics and bosses. Does support divergent Universe when in cycle mode.
 
 ## Planned
-Revive characters that got downed in combat
+All planned features have been added, there might still be additions in the future
 
 # Known Issues
 Does not yet retry if the whole team dies
-
-Reward tracking is somtimes behaving weird. Will be fixed in V2.0.1
 
 # How to use
 
@@ -45,7 +45,7 @@ To end the script early simply go into the Terminal and press 'ctrl + c'
 
 ## Updating the script
 
-To update the script simply go to the releases site again and download the new updatet version.  _depending on how difficult it is I might add an installer in the future that updates automatically_
+To update the script simply go to the releases site again and download the new updated version.
 
 # FAQ 
 

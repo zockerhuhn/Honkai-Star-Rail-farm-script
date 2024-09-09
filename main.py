@@ -318,9 +318,9 @@ def mainloop():
 
 
 def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
-    type =     [("materials", "materials"), 
-                ("weekly", "weekly"), 
-                ("relics", "relics")] 
+    type =     [("different rarity", "materials"), 
+                ("one rarity", "weekly"), 
+                ("count cycles", "relics")] 
  
     ressources = [("Reserve", "resereve"),
                     ("Fuel", "fuel"),
@@ -376,7 +376,7 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
     settings.add.toggle_switch( 
         title="Close game when done", default=False, toggleswitch_id="ExitAfterCompletion") 
 
-    settings.add.text_input(title="Amount of ressources to farm/waves to complete :", textinput_id="AmountToCollect") 
+    settings.add.text_input(title="Amount of ressources to farm/cycles to complete :", textinput_id="AmountToCollect") 
 
     settings.add.button(title="Restore Defaults", action=settings.reset_value, 
                         font_color=WHITE, background_color=RED) 

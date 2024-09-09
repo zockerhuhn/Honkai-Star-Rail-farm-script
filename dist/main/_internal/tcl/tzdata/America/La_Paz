@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5488d98aa3c29d710c6af92c42ace36550a5bff78c155cdf8769ee31f71cf033
-size 218
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:America/La_Paz) {
+    {-9223372036854775808 -16356 0 LMT}
+    {-2524505244 -16356 0 CMT}
+    {-1205954844 -12756 1 BST}
+    {-1192307244 -14400 0 -04}
+}

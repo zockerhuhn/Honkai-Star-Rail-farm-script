@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f0a0816e62036637f75081cbf17a1e6b8fbc2d86aec3cd2e234bbbdd6ec9f109
-size 185
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Asia/Kathmandu) {
+    {-9223372036854775808 20476 0 LMT}
+    {-1577943676 19800 0 +0530}
+    {504901800 20700 0 +0545}
+}

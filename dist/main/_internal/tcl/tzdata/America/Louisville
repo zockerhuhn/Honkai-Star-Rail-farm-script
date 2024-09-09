@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f85c1253f4c1d3e85757d3dea4fd3c61f1aa7be6baae8cb8579278412905acb2
-size 228
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(America/Kentucky/Louisville)]} {
+    LoadTimeZoneFile America/Kentucky/Louisville
+}
+set TZData(:America/Louisville) $TZData(:America/Kentucky/Louisville)

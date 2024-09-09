@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:761c1e80febf46d6d6215cebf211f121974156d9bce2fb4258c1074c6ed2ce22
-size 213
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Asia/Jayapura) {
+    {-9223372036854775808 33768 0 LMT}
+    {-1172913768 32400 0 +09}
+    {-799491600 34200 0 +0930}
+    {-189423000 32400 0 WIT}
+}

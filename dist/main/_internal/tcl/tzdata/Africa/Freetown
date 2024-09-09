@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bc53a4d489f48f14c594c4b0e52079b34e043a5751bbc7df254a560352243575
-size 186
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Africa/Abidjan)]} {
+    LoadTimeZoneFile Africa/Abidjan
+}
+set TZData(:Africa/Freetown) $TZData(:Africa/Abidjan)

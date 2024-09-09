@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:529bb43efda6c1584feaea789b590cef1397e33457ab3845f3101b1fc126e0fb
-size 186
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Pacific/Honolulu)]} {
+    LoadTimeZoneFile Pacific/Honolulu
+}
+set TZData(:US/Hawaii) $TZData(:Pacific/Honolulu)

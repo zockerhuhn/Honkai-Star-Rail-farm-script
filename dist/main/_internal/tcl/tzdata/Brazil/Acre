@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2f594239a434052d36053a2b3eab134eadbad06eb6737e67cf72166dab157537
-size 194
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(America/Rio_Branco)]} {
+    LoadTimeZoneFile America/Rio_Branco
+}
+set TZData(:Brazil/Acre) $TZData(:America/Rio_Branco)

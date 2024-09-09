@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dcee88876d00396918f43deca421b6c9b02f84b5866a2ce16e641b814b390a9f
-size 180
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(Asia/Bangkok)]} {
+    LoadTimeZoneFile Asia/Bangkok
+}
+set TZData(:Asia/Phnom_Penh) $TZData(:Asia/Bangkok)

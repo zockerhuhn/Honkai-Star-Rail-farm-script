@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3db174f1568bc23bf467a3dc7baf8a2a2952b70653d4de54f4db391ec50b6925
-size 148
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Asia/Dubai) {
+    {-9223372036854775808 13272 0 LMT}
+    {-1577936472 14400 0 +04}
+}

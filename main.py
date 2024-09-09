@@ -11,18 +11,21 @@ from time import sleep as delay
 
 
 #global variables
+Failed:bool = False
+FailReason:str=""
 AmountCollected = 0
 AmountToCollect:int
 CurrentState = "Temp"
 image: Image.Image
 FailCounter:int = 0
 SettingsData:None
-UseReserve:bool
-UseFuel:bool
-UseStellarJade:bool
-ExitGameAfterCompletion:bool
+UseReserve:bool = False
+UseFuel:bool = False
+UseStellarJade:bool = False
+ExitGameAfterCompletion:bool = False
 mode:int
 CharacterToIgnore:str
+SupportCharacter:int
 
 pygame.init() 
 
@@ -62,6 +65,22 @@ StarRailMapY = 140
 FirstItemShapeTwoRows:tuple = 634, 502, 659, 612
 FirstItemShapeOneRow:tuple = 848, 496, 867, 579
 
+DownedConfirmButton:tuple = 1178, 819
+
+DownedConfirmWindow:tuple = 858, 256, 1066, 287
+
+DownedNoRessourcesWindow:tuple = 1040, 561, 1324, 588
+
+CombatStartButton:tuple = 1600, 980
+
+AddSupportButton:tuple = 1710, 740
+
+FirstSupportChar:tuple = 300, 230
+
+SupportOffset:int = 140
+
+SupportConfirmButton:tuple = 1674, 984
+
 def set_settings():
     """
     Sets the global variables according to what was set in the settings
@@ -74,6 +93,7 @@ def set_settings():
     global mode
     global CharacterToIgnore
     global AmountToCollect
+    global SupportCharacter
     for i in SettingsData["AllowedRessources"][len(SettingsData["AllowedRessources"])-1]:
         match i:
             case 0:
@@ -88,10 +108,12 @@ def set_settings():
     mode = SettingsData["ChallengeType"][len(SettingsData["ChallengeType"])-1]
     CharacterToIgnore = SettingsData["IgnoreChar"]
     if SettingsData["AmountToCollect"] == "":
-        raise Exception("Amount to collect setting is empty")
+        FailReason = "Amount to collect setting is empty"
+        Failed = True
+        return
     AmountToCollect = int(SettingsData["AmountToCollect"])
- 
-        
+    SupportCharacter = int(SettingsData["SupportChar"][1])
+
 
 def update_situation():
     """
@@ -130,7 +152,6 @@ def close_game():
 def mse(imageA, imageB): #https://github.com/CelestialCrafter/hsr-auto-auto-battle/blob/master/main.py#L3
     err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
     err /= float(imageA.shape[0] * imageA.shape[1])
-    #print(err)
     return err
 
 
@@ -162,8 +183,8 @@ def update_rewardcount():
         except:
             FailCounter += 1
             if FailCounter >= FailCountMax:
-                print(f"failed {FailCounter} times which is over max amount ({FailCountMax}), terminating...")
-                raise IndexError
+                FailReason = f"failed {FailCounter} times which is over max amount ({FailCountMax})"
+                Failed = True
             print(f"somehow didn't find a reward for single and double row, trying again {FailCounter}/{FailCountMax}")
             update_rewardcount()
             return()
@@ -185,7 +206,8 @@ def update_rewardcount():
                 case 3:
                     AmountCollected += float(int(rewards[1])/3) + float(int(rewards[2])/9)
                 case _:
-                    raise Exception("Unknown Rarity, made it into calculation")
+                    Failed = True
+                    FailReason = "Unknown Rarity, made it into calculation"
         case 1:
             AmountCollected += rewards[1]
         case 2:
@@ -194,13 +216,28 @@ def update_rewardcount():
             raise Exception("invalid mode")
 
 
-def farm():
-    global AmountCollected
-    global AmountToCollect
-    global image
-    global FailCounter
+def heal():
+    global image, AmountCollected, AmountToCollect, Failed, FailReason
+    for i in range(4):
+        pyautogui.press(str(i+1))
+        delay(1)
+        image = ImageGrab.grab(DownedConfirmWindow)
+        if "Quick" in pytesseract.image_to_string(image, lang='eng', config='--psm 6'):
+            pyautogui.click(DownedConfirmButton)
+            image = ImageGrab.grab(DownedNoRessourcesWindow)
+            print(pytesseract.image_to_string(image, lang='eng', config='--psm 6'))
+            if "No" in pytesseract.image_to_string(image, lang='eng', config='--psm 6'):
+                FailReason = "No revive ressources"
+                Failed = True
+                break
+            print(f"revived {i+1}")
+        delay(3)
+
+
+def mainloop():
+    global AmountCollected, image, AmountToCollect, Failed, FailReason, ExitGameAfterCompletion, CurrentState, SupportCharacter
     delay(3)
-    while True:
+    while not Failed:
         update_situation()
         print(CurrentState)
         match CurrentState:
@@ -236,11 +273,10 @@ def farm():
                     print("Using fuel to replenish Trailblaze Power")
                 elif "Consume" in ReplenishString and UseStellarJade:
                     print("Using Stellar Jade to replenish Trailblaze Power")
+                    pyautogui.click()
                 else:
-                    print(f"Can't use any replenishment, reached {(int(AmountCollected*100))/100}/{AmountToCollect}, ending...")
-                    if ExitGameAfterCompletion:
-                        close_game()
-                        break
+                    FailReason = "Can't use any replenishment"
+                    Failed = True
                     pyautogui.click(760,735)
                     delay(0.75)
                     pyautogui.click(StopButtonX,BothButtonY)
@@ -261,14 +297,24 @@ def farm():
                     pyautogui.click(1185,679)
                     continue
                 else:
-                    print("stopping...")
                     pyautogui.click(764,675)
                     delay(0.75)
                     pyautogui.click(StopButtonX, BothButtonY)
                     delay(2)
-                    if ExitGameAfterCompletion:
-                        close_game()
-                    break
+                    heal()
+                    if not Failed:
+                        pyautogui.write('f')
+                        delay(1.5)
+                        pyautogui.click(CombatStartButton)
+                        delay(0.5)
+                        if SupportCharacter >= 1:
+                            pyautogui.click(AddSupportButton)
+                            delay(0.5)
+                            pyautogui.click(FirstSupportChar[0], FirstSupportChar[1]+(SupportOffset*(SupportCharacter-1)))
+                            delay(0.5)
+                            pyautogui.click(SupportConfirmButton)
+                            delay(0.5)
+                        pyautogui.click(CombatStartButton)
 
 
 def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
@@ -279,6 +325,14 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
     ressources = [("Reserve", "resereve"),
                     ("Fuel", "fuel"),
                     ("Stellar-Jade", "stellar-jade")]
+    
+    SupportCharIndex = [("None", "0"),
+                    ("1", "1"),
+                    ("2", "2"),
+                    ("3", "3"),
+                    ("4", "4"),
+                    ("5", "5"),
+                    ("6", "6"),]
 
     def setSettings():
         global SettingsData
@@ -288,8 +342,12 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
         setSettings()
         pygame.quit()
         set_settings()
-        farm()
-        input()
+        mainloop()
+        if Failed:
+            print(f"Failed to collect enough ressources ({(int(AmountCollected*100))/100}/{AmountToCollect}), reason: {FailReason}")
+            input()
+        elif not ExitGameAfterCompletion:
+            input()
         exit()
 
     settings = pm.Menu(title="Settings", 
@@ -302,7 +360,12 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
     settings._theme.widget_alignment = pm.locals.ALIGN_LEFT 
 
     settings.add.dropselect(title="Challenge type", items=type, 
-                            dropselect_id="ChallengeType", default=0,selection_box_height=4) 
+                            dropselect_id="ChallengeType", default=0,selection_box_height=4)
+    
+    settings.add.dropselect(title="Support Character", items=SupportCharIndex, 
+                            dropselect_id="SupportChar", default=0,selection_box_height=5) 
+
+    
     settings.add.dropselect_multiple(title="Allowed Replenishment-ressources", items=ressources,
                                     dropselect_multiple_id="AllowedRessources",
                                     open_middle=True, max_selected=0, default=0,
@@ -311,7 +374,7 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
     settings.add.text_input(title="Character to ignore when down (case sensitive) :", textinput_id="IgnoreChar") 
  
     settings.add.toggle_switch( 
-        title="Close game when  done", default=False, toggleswitch_id="ExitAfterCompletion") 
+        title="Close game when done", default=False, toggleswitch_id="ExitAfterCompletion") 
 
     settings.add.text_input(title="Amount of ressources to farm/waves to complete :", textinput_id="AmountToCollect") 
 

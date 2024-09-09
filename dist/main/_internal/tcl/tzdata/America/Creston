@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a01ddb460420c8765ce8ef7a7d031abd7bdb17cfa548e7c3b8574c388aa21e17
-size 189
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(America/Phoenix)]} {
+    LoadTimeZoneFile America/Phoenix
+}
+set TZData(:America/Creston) $TZData(:America/Phoenix)

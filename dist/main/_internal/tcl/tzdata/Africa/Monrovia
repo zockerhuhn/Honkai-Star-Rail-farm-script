@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2bf0d90610211651127402680519b29ab50b15d344263d0c1a22edebe5e01e27
-size 208
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Africa/Monrovia) {
+    {-9223372036854775808 -2588 0 LMT}
+    {-2776979812 -2588 0 MMT}
+    {-1604359012 -2670 0 MMT}
+    {63593070 0 0 GMT}
+}

@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5b40167dd0c0b5c293861070c4ac249f78ddf8bad798dd0165e3ae894c9b9570
-size 194
+# created by tools/tclZIC.tcl - do not edit
+if {![info exists TZData(America/Santiago)]} {
+    LoadTimeZoneFile America/Santiago
+}
+set TZData(:Chile/Continental) $TZData(:America/Santiago)

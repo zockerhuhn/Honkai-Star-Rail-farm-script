@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:91aa5da8d5d1e72b1f561d0aeab4b07e02edd4eb95ae8c9f1c503c820460599f
-size 152
+# created by tools/tclZIC.tcl - do not edit
+
+set TZData(:Pacific/Tarawa) {
+    {-9223372036854775808 41524 0 LMT}
+    {-2177494324 43200 0 +12}
+}

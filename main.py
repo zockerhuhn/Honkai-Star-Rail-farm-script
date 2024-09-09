@@ -209,7 +209,7 @@ def update_rewardcount():
                     Failed = True
                     FailReason = "Unknown Rarity, made it into calculation"
         case 1:
-            AmountCollected += rewards[1]
+            AmountCollected += int(rewards[1])
         case 2:
             AmountCollected += 1
         case _:

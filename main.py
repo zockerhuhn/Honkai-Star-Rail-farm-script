@@ -300,7 +300,7 @@ def mainloop():
                     pyautogui.click(764,675)
                     delay(0.75)
                     pyautogui.click(StopButtonX, BothButtonY)
-                    delay(2)
+                    delay(4)
                     heal()
                     if not Failed:
                         pyautogui.write('f')

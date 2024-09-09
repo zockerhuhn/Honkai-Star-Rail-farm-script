@@ -14,3 +14,10 @@
   --commit-title-except "Update README.md" --files main.py --target main +task+ Ignore downed character
   --commit-title-except "Update README.md" --files main.py --target main +task+ Multiple downed character
   --commit-title-except "Update README.md" --files main.py --target main +task+ Use Support 1-6
+
++title+ Sentience check
+  # check if script has already gained sentience
+  +task+ no
+
+--put-on-files temp.txt --with-modification modified +title+ temp test
+  --put-on-files temp.txt --with-modification modified +task+ hi

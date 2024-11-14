@@ -8,6 +8,7 @@ import cv2 as cv
 import pytesseract
 import pyautogui
 from time import sleep as delay
+import os
 
 
 #global variables
@@ -401,6 +402,10 @@ def GUI(): #https://www.geeksforgeeks.org/create-settings-menu-in-python-pygame/
                         font_color=WHITE, background_color=RED) 
     mainMenu.mainloop(screen) 
 
- 
+
 if __name__ == "__main__":
+    if os.path.exists("/dist/Tesseract-OCR"):
+        pytesseract.pytesseract.tesseract_cmd = '\\dist\\Tesseract-OCR\\tesseract.exe'
+    else:
+        pytesseract.pytesseract.tesseract_cmd = '\\Tesseract-OCR\\tesseract.exe'
     GUI()

@@ -1,5 +1,4 @@
-pillow==10.3.0
-wheels
+pillow==11.0.0
 PyAutoGui==0.9.54
 pytesseract==0.3.10
 opencv-python==4.10.0.84

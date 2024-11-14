@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt --no-cache-dir --pre; fi
+          if [ -f requirements.txt ]; then pip install -r requirements.txt --no-binary=:all:; fi
       - name: execute py script # run file
         run: 
             python main.py
